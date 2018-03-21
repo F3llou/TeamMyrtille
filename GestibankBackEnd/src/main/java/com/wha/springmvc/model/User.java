@@ -9,7 +9,7 @@ import javax.persistence.Table;
 public class User {
 
 	@Id
-	private long id;
+	private int id;
 	
 	private String username;
 	
@@ -21,7 +21,7 @@ public class User {
 		id=0;
 	}
 	
-	public User(long id, String username, String address, String email){
+	public User(int id, String username, String address, String email){
 		this.id = id;
 		this.username = username;
 		this.address = address;
@@ -32,7 +32,7 @@ public class User {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
