@@ -6,7 +6,7 @@ import com.wha.springmvc.model.User;
 
 public interface UserDao {
 
-	User findById(int id);
+	User findById(int id);//test
 	User findByName(String name);
 	void save(User user);
 	void deleteUserById(int id);
