@@ -2,6 +2,7 @@ package com.wha.springmvc.service;
 
 import java.util.List;
 
+import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.User;
 
 
@@ -24,4 +25,7 @@ public interface UserService {
 	
 	public boolean isUserExist(User user);
 	
+	//Les methodes de traitement des clients
+	Client findClientByName(String name);
+	void saveClient(Client client);
 }

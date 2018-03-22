@@ -10,7 +10,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wha.springmvc.dao.ClientDao;
 import com.wha.springmvc.dao.UserDao;
+import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.User;
 
 @Service("userService")
@@ -27,6 +29,9 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserDao dao;
+	
+	@Autowired
+	private ClientDao cdao;
 	
 	public List<User> findAllUsers() {
 		//return users;
@@ -87,6 +92,18 @@ public class UserServiceImpl implements UserService{
 	
 	public void deleteAllUsers(){
 		//users.clear();
+	}
+
+	@Override
+	public Client findClientByName(String name) {
+		// TODO Auto-generated method stub
+		return cdao.findByName(name);
+	}
+
+	@Override
+	public void saveClient(Client client) {
+		// TODO Auto-generated method stub
+		cdao.save(client);
 	}
 
 //	private static List<User> populateDummyUsers(){

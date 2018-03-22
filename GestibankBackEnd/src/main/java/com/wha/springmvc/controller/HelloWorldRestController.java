@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.User;
 import com.wha.springmvc.service.UserService;
  
@@ -123,4 +124,14 @@ public class HelloWorldRestController {
         return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
     }
  
+    //------------------- Recherche Client par nom --------------------
+    @RequestMapping(value="/client/{nom}", method = RequestMethod.GET)
+    public ResponseEntity<Client> rechercheClientParNom(@PathVariable("nom") String n){
+    	Client cli = userService.findClientByName(n);
+    	if(cli == null) {
+    		return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
+    	}else {
+    		return new ResponseEntity<Client>(cli, HttpStatus.OK);
+    	}
+    }
 }
