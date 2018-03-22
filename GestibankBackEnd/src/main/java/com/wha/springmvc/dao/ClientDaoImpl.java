@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
+import org.springframework.stereotype.Repository;
+
 import com.wha.springmvc.model.Client;
 
+@Repository("clientDao")
 public class ClientDaoImpl extends AbstractDao<Integer, Client> implements ClientDao {
 
 	@Override
