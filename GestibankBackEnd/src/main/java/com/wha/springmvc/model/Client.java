@@ -12,11 +12,18 @@ public class Client extends User{
 	
 	
 	
-	public Client(String numeroTel, int salaire) {
+	public Client() {
 		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Client(int id, String username, String address, String email) {
+		super(id, username, address, email);
 		this.numeroTel = numeroTel;
 		this.salaire = salaire;
+		// TODO Auto-generated constructor stub
 	}
+	
 	//getter and setter
 	public String getNumeroTel() {
 		return numeroTel;
