@@ -17,7 +17,7 @@
 	</properties>
 
 	<dependencies>
-		<!-- Hivernate -->
+		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -35,12 +35,10 @@
 			<version>${mysql.version}</version>
 		</dependency>
 		<!-- Spring -->
-		<dependency>
-			<groupId>org.springFramework</groupId>
+	<dependency>
+			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${springframework.version}</version>
-			<scope>system</scope>
-  			<systemPath>C:\Users\gk\.m2\repository\org\springFramework\spring-webmvc\4.3.1.RELEASE\spring-webmvc-4.3.1.RELEASE.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>

@@ -10,8 +10,6 @@ public class Client extends User{
 	private String numeroTel;
 	private int salaire;
 	
-	
-	
 	public Client() {
 		super();
 		// TODO Auto-generated constructor stub
