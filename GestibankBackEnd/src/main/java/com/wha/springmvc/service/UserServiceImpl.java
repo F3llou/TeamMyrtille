@@ -5,13 +5,21 @@ package com.wha.springmvc.service;
 import java.util.List;
 //import java.util.concurrent.atomic.AtomicLong;
 
+
+
+
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wha.springmvc.dao.AdminDao;
+import com.wha.springmvc.dao.AgentDao;
 import com.wha.springmvc.dao.ClientDao;
 import com.wha.springmvc.dao.UserDao;
+import com.wha.springmvc.model.Admin;
+import com.wha.springmvc.model.Agent;
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.User;
 
@@ -33,6 +41,13 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private ClientDao cdao;
 	
+	@Autowired
+	private AgentDao agdao;
+	
+	@Autowired
+	private AdminDao addao;
+	
+	//partie user
 	public List<User> findAllUsers() {
 		//return users;
 		return dao.findAllUsers();
@@ -93,7 +108,7 @@ public class UserServiceImpl implements UserService{
 	public void deleteAllUsers(){
 		//users.clear();
 	}
-
+//partie client
 	@Override
 	public Client findClientByName(String name) {
 		// TODO Auto-generated method stub
@@ -105,7 +120,31 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		cdao.save(client);
 	}
+//partie agent
+	@Override
+	public Agent findAgentByName(String name) {
+		// TODO Auto-generated method stub
+		return agdao.findByName(name);
+	}
 
+	@Override
+	public void saveAgent(Agent agent) {
+		// TODO Auto-generated method stub
+		agdao.save(agent);
+	}
+//partie admin
+	@Override
+	public Admin findAdminByName(String name) {
+		// TODO Auto-generated method stub
+		return addao.findByName(name);
+	}
+
+	@Override
+	public void saveAdmin(Admin admin) {
+		// TODO Auto-generated method stub
+		addao.save(admin);
+	}
+	
 //	private static List<User> populateDummyUsers(){
 //		List<User> users = new ArrayList<User>();
 //		users.add(new User(counter.incrementAndGet(),"Sam", "PARIS", "sam@abc.com"));
