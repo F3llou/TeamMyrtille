@@ -13,3 +13,6 @@ public interface AdminDao {
 	List<Admin> findAllUsers();
 	void deleteAllUsers();
 }
+
+
+
