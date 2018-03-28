@@ -14,5 +14,8 @@ public class CompteSansDecouv extends Compte {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public CompteSansDecouv(int id, double solde, String type){
+		super(id, solde, type);
+	}
 
 }

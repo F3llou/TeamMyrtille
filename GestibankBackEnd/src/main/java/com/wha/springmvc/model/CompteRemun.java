@@ -14,8 +14,8 @@ public class CompteRemun extends Compte {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public CompteRemun(double solde, String type) {
-		super(solde, type);
+	public CompteRemun(int id, double solde, String type) {
+		super(id, solde, type);
 		this.decouvert = decouvert;
 	}
 

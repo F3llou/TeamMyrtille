@@ -14,8 +14,8 @@ public class CompteAvecDecouv extends Compte {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public CompteAvecDecouv(double solde, String type) {
-		super(solde, type);
+	public CompteAvecDecouv(int id, double solde, String type) {
+		super(id, solde, type);
 		this.decouvert = decouvert;
 	}
 
