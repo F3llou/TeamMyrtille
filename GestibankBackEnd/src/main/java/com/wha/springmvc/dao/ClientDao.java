@@ -10,6 +10,6 @@ public interface ClientDao {
 	Client findByName(String name);
 	void save(Client client);
 	void deleteUserById(int id);
-	List<Client> findAllClients();
-	void deleteAllClients();
+	List<Client> findAllUsers();
+	void deleteAllUsers();
 }

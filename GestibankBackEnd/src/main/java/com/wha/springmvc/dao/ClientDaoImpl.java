@@ -43,13 +43,13 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
 	}
 
 	@Override
-	public List<Client> findAllClients() {
+	public List<Client> findAllUsers() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void deleteAllClients() {
+	public void deleteAllUsers() {
 		// TODO Auto-generated method stub
 
 	}
