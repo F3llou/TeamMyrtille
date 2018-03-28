@@ -1,5 +1,10 @@
 package com.wha.springmvc.model;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("CAD")
 public class CompteAvecDecouv extends Compte {
 
 	private double decouvert;
