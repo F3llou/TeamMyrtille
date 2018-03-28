@@ -15,8 +15,8 @@ public class Admin extends User{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Admin(int id, String username, String address, String email) {
-		super(id, username, address, email);
+	public Admin(int id, String username, String address, String email, String numTel) {
+		super(id, username, address, email, numTel);
 		this.login=login;
 		this.mdp=mdp;
 		// TODO Auto-generated constructor stub

@@ -9,20 +9,20 @@ public class Client extends User{
 
 	private String prenom;
 	private String mdp;
-	private String numeroTel;
-	private int salaire;
+	private int nbEnfant;
+	private String situationMaritale;
 	
 	public Client() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Client(int id, String username, String address, String email) {
-		super(id, username, address, email);
+	public Client(int id, String username, String address, String email, String numTel) {
+		super(id, username, address, email, numTel);
 		this.prenom=prenom;
 		this.mdp=mdp;
-		this.numeroTel = numeroTel;
-		this.salaire = salaire;
+		this.nbEnfant = nbEnfant;
+		this.situationMaritale = situationMaritale;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -42,27 +42,28 @@ public class Client extends User{
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	
-	public String getNumeroTel() {
-		return numeroTel;
+
+	public int getNbEnfant() {
+		return nbEnfant;
 	}
 
+	public void setNbEnfant(int nbEnfant) {
+		this.nbEnfant = nbEnfant;
+	}
 
-	public void setNumeroTel(String numeroTel) {
-		this.numeroTel = numeroTel;
+	public String getSituationMaritale() {
+		return situationMaritale;
 	}
-	public int getSalaire() {
-		return salaire;
-	}
-	public void setSalaire(int salaire) {
-		this.salaire = salaire;
+
+	public void setSituationMaritale(String situationMaritale) {
+		this.situationMaritale = situationMaritale;
 	}
 
 	@Override
 	public String toString() {
 		return "Client [getMdp()=" + getMdp() + ", getPrenom()=" + getPrenom()
-				+ ", getNumeroTel()=" + getNumeroTel() + ", getSalaire()="
-				+ getSalaire() + "]";
+				+ ", getNbEnfant()=" + getNbEnfant()
+				+ ", getSituationMaritale()=" + getSituationMaritale() + "]";
 	}
 
 	@Override
@@ -70,10 +71,12 @@ public class Client extends User{
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((mdp == null) ? 0 : mdp.hashCode());
-		result = prime * result
-				+ ((numeroTel == null) ? 0 : numeroTel.hashCode());
+		result = prime * result + nbEnfant;
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-		result = prime * result + salaire;
+		result = prime
+				* result
+				+ ((situationMaritale == null) ? 0 : situationMaritale
+						.hashCode());
 		return result;
 	}
 
@@ -91,17 +94,17 @@ public class Client extends User{
 				return false;
 		} else if (!mdp.equals(other.mdp))
 			return false;
-		if (numeroTel == null) {
-			if (other.numeroTel != null)
-				return false;
-		} else if (!numeroTel.equals(other.numeroTel))
+		if (nbEnfant != other.nbEnfant)
 			return false;
 		if (prenom == null) {
 			if (other.prenom != null)
 				return false;
 		} else if (!prenom.equals(other.prenom))
 			return false;
-		if (salaire != other.salaire)
+		if (situationMaritale == null) {
+			if (other.situationMaritale != null)
+				return false;
+		} else if (!situationMaritale.equals(other.situationMaritale))
 			return false;
 		return true;
 	}

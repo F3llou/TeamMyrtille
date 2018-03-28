@@ -9,18 +9,17 @@ public class Agent extends User{
 
 	private int matricule;
 	private String mdp;
-	private int numTel;
+	
 	
 	public Agent() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Agent(int id, String username, String address, String email) {
-		super(id, username, address, email);
+	public Agent(int id, String username, String address, String email, String numTel) {
+		super(id, username, address, email, numTel);
 		this.matricule=matricule;
 		this.mdp=mdp;
-		this.numTel=numTel;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -33,14 +32,6 @@ public class Agent extends User{
 		this.matricule = matricule;
 	}
 
-	public int getNumTel() {
-		return numTel;
-	}
-
-	public void setNumTel(int numTel) {
-		this.numTel = numTel;
-	}
-
 	public String getMdp() {
 		return mdp;
 	}
@@ -51,8 +42,8 @@ public class Agent extends User{
 
 	@Override
 	public String toString() {
-		return "Agent [getMatricule()=" + getMatricule() + ", getNumTel()="
-				+ getNumTel() + ", getMdp()=" + getMdp() + "]";
+		return "Agent [getMatricule()=" + getMatricule() + ", getMdp()="
+				+ getMdp() + "]";
 	}
 
 	@Override
@@ -61,7 +52,6 @@ public class Agent extends User{
 		int result = super.hashCode();
 		result = prime * result + matricule;
 		result = prime * result + ((mdp == null) ? 0 : mdp.hashCode());
-		result = prime * result + numTel;
 		return result;
 	}
 
@@ -80,8 +70,6 @@ public class Agent extends User{
 			if (other.mdp != null)
 				return false;
 		} else if (!mdp.equals(other.mdp))
-			return false;
-		if (numTel != other.numTel)
 			return false;
 		return true;
 	}
