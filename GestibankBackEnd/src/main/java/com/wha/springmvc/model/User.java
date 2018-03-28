@@ -8,6 +8,12 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author TeamMyrtille
+ * @version 1.0
+ */
+
 @Entity
 @Table(name="user")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)

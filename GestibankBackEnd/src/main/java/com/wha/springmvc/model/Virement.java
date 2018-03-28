@@ -5,6 +5,12 @@ import java.util.Date;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+/**
+ * 
+ * @author TeamMyrtille
+ * @version 1.0
+ */
+
 @Entity
 @DiscriminatorValue("V")
 public class Virement extends Operation{

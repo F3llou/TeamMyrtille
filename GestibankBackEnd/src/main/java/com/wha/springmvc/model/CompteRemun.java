@@ -3,6 +3,12 @@ package com.wha.springmvc.model;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+/**
+ * 
+ * @author TeamMyrtille
+ * @version 1.0
+ */
+
 @Entity
 @DiscriminatorValue("CR")
 public class CompteRemun extends Compte {

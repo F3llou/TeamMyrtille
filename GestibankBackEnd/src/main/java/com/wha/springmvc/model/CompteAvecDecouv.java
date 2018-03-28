@@ -3,6 +3,12 @@ package com.wha.springmvc.model;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+/**
+ * 
+ * @author TeamMyrtille
+ * @version 1.0
+ */
+
 @Entity
 @DiscriminatorValue("CAD")
 public class CompteAvecDecouv extends Compte {
