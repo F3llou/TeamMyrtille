@@ -1,5 +1,7 @@
 package com.wha.springmvc.model;
 
+import java.util.Date;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -9,18 +11,17 @@ public class Agent extends User{
 
 	private int matricule;
 	private String mdp;
-	
+	private Date dateDeb;
 	
 	public Agent() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Agent(int id, String username, String address, String email, String numTel) {
 		super(id, username, address, email, numTel);
 		this.matricule=matricule;
 		this.mdp=mdp;
-		// TODO Auto-generated constructor stub
+		this.dateDeb=dateDeb;
 	}
 	
 	//getter and setter
@@ -40,16 +41,25 @@ public class Agent extends User{
 		this.mdp = mdp;
 	}
 
+	public Date getDateDeb() {
+		return dateDeb;
+	}
+
+	public void setDateDeb(Date dateDeb) {
+		this.dateDeb = dateDeb;
+	}
+
 	@Override
 	public String toString() {
 		return "Agent [getMatricule()=" + getMatricule() + ", getMdp()="
-				+ getMdp() + "]";
+				+ getMdp() + ", getDateDeb()=" + getDateDeb() + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
+		result = prime * result + ((dateDeb == null) ? 0 : dateDeb.hashCode());
 		result = prime * result + matricule;
 		result = prime * result + ((mdp == null) ? 0 : mdp.hashCode());
 		return result;
@@ -64,6 +74,11 @@ public class Agent extends User{
 		if (getClass() != obj.getClass())
 			return false;
 		Agent other = (Agent) obj;
+		if (dateDeb == null) {
+			if (other.dateDeb != null)
+				return false;
+		} else if (!dateDeb.equals(other.dateDeb))
+			return false;
 		if (matricule != other.matricule)
 			return false;
 		if (mdp == null) {

@@ -20,7 +20,8 @@ public class Compte {
 	private double solde;
 	private String type;
 	
-	public Compte(){	
+	public Compte(){
+		id=0;
 	}
 	
 	public Compte(int id, double solde, String type){

@@ -17,13 +17,9 @@ public class User {
 
 	@Id
 	private int id;
-	
 	private String username;
-	
 	private String address;
-	
 	private String email;
-	
 	private String numTel;
 	
 	public User(){
