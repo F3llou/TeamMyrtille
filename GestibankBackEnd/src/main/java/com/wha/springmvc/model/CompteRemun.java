@@ -12,7 +12,7 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("CR")
 public class CompteRemun extends Compte {
-
+	/*private float tauxInterets;*/
 	private double decouvert;
 	
 	public CompteRemun() {
@@ -24,5 +24,13 @@ public class CompteRemun extends Compte {
 		super(id, solde, type);
 		this.decouvert = decouvert;
 	}
-
+	/*public float getTauxInterets() {
+        return tauxInterets;
+    }
+    
+    public double calculInterets() {
+        solde=solde+solde*tauxInterets;
+        return solde;}
+    
+}*/
 }
