@@ -56,7 +56,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	/**
 	 * Efface un utilisateur par son ssoId
 	 * 
-	 * @param sso
+	 * @param sso ssoID de l'utilisateur à supprimer
 	 */
 	public void deleteBySSO(String sso){
 		User user = (User) getEntityManager().createQuery("SELECT u FROM User u WHERE u.ssoId LIKE :ssoId").setParameter("ssoId", sso).getSingleResult();
@@ -72,7 +72,11 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	}*/
 	
 	/**
+	 * Retrouver un utilisateur par son nom (username)
 	 * 
+	 * @param name Nom de l'utilisateur à rechercher
+	 * @return user Profil de l'utilisateur retrouvé
+	 * @return null Rien n'est retourné s'il n'y a pas de résultat
 	 */
 	@Override
 	public User findByName(String name){
@@ -86,7 +90,9 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	}
 	
 	/**
+	 * Efface un utilisateur retrouvé par son identifiant
 	 * 
+	 * @param id Identifiant de l'utilisateur à effacer
 	 */
 	@Override
 	public void deleteUserById(int id){
@@ -95,7 +101,8 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	}
 	
 	/**
-	 * 
+	 * Efface tous les utilisateurs
+	 * (pas de méthode pour le moment)
 	 */
 	@Override
 	public void deleteAllUsers(){

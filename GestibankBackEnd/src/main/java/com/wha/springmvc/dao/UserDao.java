@@ -13,39 +13,47 @@ import com.wha.springmvc.model.User;
 public interface UserDao {
 
 	/**
+	 * Recherche d'un utilisateur par identifiant
 	 * 
-	 * @param id
-	 * @return
+	 * @param id identifiant utilisé pour la recherche
+	 * @return user Retourne l'utilisateur trouvé
 	 */
 	User findById(int id);
 	
 	/**
+	 * Retrouver un utilisateur par son nom (username)
 	 * 
-	 * @param name
-	 * @return
+	 * @param name Nom de l'utilisateur à rechercher
+	 * @return user Profil de l'utilisateur retrouvé
+	 * @return null Rien n'est retourné s'il n'y a pas de résultat
 	 */
 	User findByName(String name);
 	
 	/**
+	 * Sauvegarde du profil utilisateur
 	 * 
-	 * @param user
+	 * @param user Profil de l'utilisateur à sauvegarder
+	 * @return user Profil de l'utilisateur passé en persistance
 	 */
 	void save(User user);
 	
 	/**
+	 * Efface un utilisateur retrouvé par son identifiant
 	 * 
-	 * @param id
+	 * @param id Identifiant de l'utilisateur à effacer
 	 */
 	void deleteUserById(int id);
 	
 	/**
+	 * Recherche de tous les utilisateurs
 	 * 
-	 * @return
+	 * @return users Retourne une liste de tous les utilisateurs
 	 */
 	List<User> findAllUsers();
 	
 	/**
-	 * 
+	 * Efface tous les utilisateurs
+	 * (pas de méthode pour le moment)
 	 */
 	void deleteAllUsers();
 }
