@@ -63,7 +63,23 @@ angular.module('myApp').factory('UserService', ['$http', '$q', function($http, $
     /* supprime un user puis refresh de la liste des users */
     function deleteUser(id) {
         var deferred = $q.defer();
-        $http.delete(REST_SERVICE_URI+id)
+        $http({
+        	  method: 'DELETE',
+        	  url: REST_SERVICE_URI
+        	}).then(
+        			function (response) {
+        	    // this callback will be called asynchronously
+        	    // when the response is available
+        				deferred.resolve(response.data);
+        	  }, function(errResponse) {
+        	    // called asynchronously if an error occurs
+        	    // or server returns response with an error status.
+        		  console.error('Error while deleting User');
+                  deferred.reject(errResponse);
+        	});
+        
+        //Precedente methode $http.delete en erreur sur le token '.'
+        /*$http.delete(REST_SERVICE_URI+id)
             .then(
             function (response) {
                 deferred.resolve(response.data);
@@ -72,7 +88,8 @@ angular.module('myApp').factory('UserService', ['$http', '$q', function($http, $
                 console.error('Error while deleting User');
                 deferred.reject(errResponse);
             }
-        );
+        );*/
+        
         return deferred.promise;
     }
 
