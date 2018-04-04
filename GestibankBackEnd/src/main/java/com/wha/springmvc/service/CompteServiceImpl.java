@@ -9,9 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.wha.springmvc.dao.CompteAvecDecouvertDao;
 import com.wha.springmvc.dao.CompteDao;
+import com.wha.springmvc.dao.CompteRemunDao;
+import com.wha.springmvc.dao.CompteSansDecouvertDao;
 import com.wha.springmvc.dao.UserDao;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.CompteAvecDecouv;
+import com.wha.springmvc.model.CompteRemun;
+import com.wha.springmvc.model.CompteSansDecouv;
 
 
 
@@ -24,7 +28,10 @@ public class CompteServiceImpl implements CompteService{
 
 	@Autowired
 	private CompteAvecDecouvertDao decdao;
-	
+	@Autowired
+	private CompteSansDecouvertDao sdedao;
+	@Autowired
+	private CompteRemunDao remdao;
 	
 	//partie compte
 	
@@ -91,9 +98,31 @@ public class CompteServiceImpl implements CompteService{
 		
 		decdao.save(compteAvecDecouv);
 	}
+	//partie compteSansdecouv
+		@Override
+		public CompteSansDecouv findCompteSansDecouvById(int id) {
+			
+			return sdedao.findById(id);
+		}
 
+		@Override
+		public void saveCompteSansDecouv(CompteSansDecouv compteSansDecouv) {
+			
+			sdedao.save(compteSansDecouv);
+		}
 
-	
+		//partie compteRemun
+				@Override
+				public CompteRemun findCompteRemunById(int id) {
+					
+					return remdao.findById(id);
+				}
+
+				@Override
+				public void saveCompteRemun(CompteRemun compteRemun) {
+					
+					remdao.save(compteRemun);
+				}
 
 	
 

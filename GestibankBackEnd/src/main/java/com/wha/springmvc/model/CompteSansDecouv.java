@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("CSD")
 public class CompteSansDecouv extends Compte {
-
-	
 	
 	public CompteSansDecouv() {
 		super();
@@ -23,5 +21,6 @@ public class CompteSansDecouv extends Compte {
 	public CompteSansDecouv(int id, double solde, String type){
 		super(id, solde, type);
 	}
+
 
 }

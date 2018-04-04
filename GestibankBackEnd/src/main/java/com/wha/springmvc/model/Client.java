@@ -1,7 +1,10 @@
 package com.wha.springmvc.model;
 
+import java.util.List;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  * 
@@ -13,42 +16,26 @@ import javax.persistence.Entity;
 @DiscriminatorValue("CL")
 public class Client extends User{
 
-	private String prenom;
-	private String mdp;
 	private int nbEnfant;
 	private String situationMaritale;
+	
+	@OneToMany
+	private List<Compte> listComptes;
 	
 	public Client() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Client(int id, String username, String address, String email, String numTel) {
-		super(id, username, address, email, numTel);
-		this.prenom=prenom;
-		this.mdp=mdp;
+	public Client(int id, String login, String mdp, String username,
+			String prenom, String address, String email, String numTel) {
+		super(id, login, mdp, username, prenom, address, email, numTel);
 		this.nbEnfant = nbEnfant;
 		this.situationMaritale = situationMaritale;
 		// TODO Auto-generated constructor stub
 	}
 	
 	//getter and setter
-	public String getMdp() {
-		return mdp;
-	}
-
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
-	}
-	
-	public String getPrenom() {
-		return prenom;
-	}
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
 	public int getNbEnfant() {
 		return nbEnfant;
 	}
@@ -67,8 +54,7 @@ public class Client extends User{
 
 	@Override
 	public String toString() {
-		return "Client [getMdp()=" + getMdp() + ", getPrenom()=" + getPrenom()
-				+ ", getNbEnfant()=" + getNbEnfant()
+		return "Client [getNbEnfant()=" + getNbEnfant()
 				+ ", getSituationMaritale()=" + getSituationMaritale() + "]";
 	}
 
@@ -76,9 +62,7 @@ public class Client extends User{
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((mdp == null) ? 0 : mdp.hashCode());
 		result = prime * result + nbEnfant;
-		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
 		result = prime
 				* result
 				+ ((situationMaritale == null) ? 0 : situationMaritale
@@ -95,17 +79,7 @@ public class Client extends User{
 		if (getClass() != obj.getClass())
 			return false;
 		Client other = (Client) obj;
-		if (mdp == null) {
-			if (other.mdp != null)
-				return false;
-		} else if (!mdp.equals(other.mdp))
-			return false;
 		if (nbEnfant != other.nbEnfant)
-			return false;
-		if (prenom == null) {
-			if (other.prenom != null)
-				return false;
-		} else if (!prenom.equals(other.prenom))
 			return false;
 		if (situationMaritale == null) {
 			if (other.situationMaritale != null)
@@ -113,6 +87,14 @@ public class Client extends User{
 		} else if (!situationMaritale.equals(other.situationMaritale))
 			return false;
 		return true;
+	}
+
+	public List<Compte> getListComptes() {
+		return listComptes;
+	}
+
+	public void setListComptes(List<Compte> listComptes) {
+		this.listComptes = listComptes;
 	}
 	
 }

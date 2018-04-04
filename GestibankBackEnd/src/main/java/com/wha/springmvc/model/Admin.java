@@ -1,7 +1,10 @@
 package com.wha.springmvc.model;
 
+import java.util.List;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  * 
@@ -11,75 +14,30 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("AD")
-public class Admin extends User{
-
-	private String login;
-	private String mdp;
+public class Admin extends User {
 	
+	@OneToMany
+	private List<Agent> listAgents;
+
 	public Admin() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Admin(int id, String username, String address, String email, String numTel) {
-		super(id, username, address, email, numTel);
-		this.login=login;
-		this.mdp=mdp;
+
+	public Admin(int id, String login, String mdp, String username,
+			String prenom, String address, String email, String numTel) {
+		super(id, login, mdp, username, prenom, address, email, numTel);
 		// TODO Auto-generated constructor stub
 	}
-	
-	//getter and setter
-	public String getLogin() {
-		return login;
+
+	public List<Agent> getListAgents() {
+		return listAgents;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setListAgents(List<Agent> listAgents) {
+		this.listAgents = listAgents;
 	}
 
-	public String getMdp() {
-		return mdp;
-	}
-
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
-	}
-
-	@Override
-	public String toString() {
-		return "Admin [getLogin()=" + getLogin() + ", getMdp()=" + getMdp()
-				+ "]";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
-		result = prime * result + ((mdp == null) ? 0 : mdp.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Admin other = (Admin) obj;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
-		if (mdp == null) {
-			if (other.mdp != null)
-				return false;
-		} else if (!mdp.equals(other.mdp))
-			return false;
-		return true;
-	}
+	// getter and setter
 
 }

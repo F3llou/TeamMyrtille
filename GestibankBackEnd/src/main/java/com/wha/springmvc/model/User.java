@@ -1,11 +1,14 @@
 package com.wha.springmvc.model;
 
+import java.util.List;
+
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -23,25 +26,62 @@ public class User {
 
 	@Id
 	private int id;
+	private String login;
+	private String mdp;
 	private String username;
+	private String prenom;
 	private String address;
 	private String email;
 	private String numTel;
+	
+	//@OneToMany
+	//private List<Demande> listDemandes;
 	
 	public User(){
 		id=0;
 	}
 	
-	public User(int id, String username, String address, String email, String numTel){
+	public User(int id, String login, String mdp, String username, String prenom, String address, String email, String numTel){
 		this.id = id;
+		this.login=login;
+		this.mdp=mdp;
 		this.username = username;
+		this.prenom=prenom;
 		this.address = address;
 		this.email = email;
 		this.numTel = numTel;
 	}
 
+	
+	// getter and setter
+	
+	
 	public int getId() {
 		return id;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 
 	public void setId(int id) {
@@ -82,9 +122,11 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [getId()=" + getId() + ", getUsername()=" + getUsername()
-				+ ", getAddress()=" + getAddress() + ", getEmail()="
-				+ getEmail() + ", getNumTel()=" + getNumTel() + "]";
+		return "User [getId()=" + getId() + ", getLogin()=" + getLogin()
+				+ ", getMdp()=" + getMdp() + ", getPrenom()=" + getPrenom()
+				+ ", getUsername()=" + getUsername() + ", getAddress()="
+				+ getAddress() + ", getEmail()=" + getEmail()
+				+ ", getNumTel()=" + getNumTel() + "]";
 	}
 
 	@Override
@@ -94,7 +136,10 @@ public class User {
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		result = prime * result + ((mdp == null) ? 0 : mdp.hashCode());
 		result = prime * result + ((numTel == null) ? 0 : numTel.hashCode());
+		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
 		result = prime * result
 				+ ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -121,10 +166,25 @@ public class User {
 			return false;
 		if (id != other.id)
 			return false;
+		if (login == null) {
+			if (other.login != null)
+				return false;
+		} else if (!login.equals(other.login))
+			return false;
+		if (mdp == null) {
+			if (other.mdp != null)
+				return false;
+		} else if (!mdp.equals(other.mdp))
+			return false;
 		if (numTel == null) {
 			if (other.numTel != null)
 				return false;
 		} else if (!numTel.equals(other.numTel))
+			return false;
+		if (prenom == null) {
+			if (other.prenom != null)
+				return false;
+		} else if (!prenom.equals(other.prenom))
 			return false;
 		if (username == null) {
 			if (other.username != null)
@@ -133,5 +193,13 @@ public class User {
 			return false;
 		return true;
 	}
+
+	/*public List<Demande> getListDemandes() {
+		return listDemandes;
+	}
+
+	public void setListDemandes(List<Demande> listDemandes) {
+		this.listDemandes = listDemandes;
+	}*/
 	
 }

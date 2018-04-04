@@ -26,11 +26,11 @@ public interface CompteService {
 	CompteAvecDecouv  findCompteAvecDecouvById(int id);
 	void saveCompteAvecDecouv(CompteAvecDecouv compteAvecDecouv);
 	
-	/*//les methodes de traitement des compteSansDecouv
+	//les methodes de traitement des compteSansDecouv
 	CompteSansDecouv findCompteSansDecouvById(int id);
 	void saveCompteSansDecouv(CompteSansDecouv compteSansDecouv);
 	
 	//les methodes de traitement des CompteRemun
 	CompteRemun findCompteRemunById(int id);
-		void saveCompteRemun(CompteRemun compteRemun);*/
+		void saveCompteRemun(CompteRemun compteRemun);
 }

@@ -2,7 +2,6 @@ package com.wha.springmvc.dao;
 
 import java.util.List;
 
-import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.CompteAvecDecouv;
 
 
