@@ -1,5 +1,6 @@
 package com.wha.springmvc.service;
 
+import java.sql.SQLException;
 //import java.util.ArrayList;
 //import java.util.Iterator;
 import java.util.List;
@@ -98,6 +99,7 @@ public class UserServiceImpl implements UserService{
 	public void deleteAllUsers(){
 		//users.clear();
 	}
+	 
 //partie client
 	public Client findClientById(int id) {
 		return cdao.findClientById((int)id);

@@ -89,6 +89,10 @@ public class HelloWorldRestController {
         currentUser.setUsername(user.getUsername());
         currentUser.setAddress(user.getAddress());
         currentUser.setEmail(user.getEmail());
+        currentUser.setLogin(user.getLogin());
+        currentUser.setMdp(user.getMdp());
+        currentUser.setPrenom(user.getPrenom());		
+        currentUser.setNumTel(user.getNumTel());
          
         userService.updateUser(currentUser);
         return new ResponseEntity<User>(currentUser, HttpStatus.OK);
