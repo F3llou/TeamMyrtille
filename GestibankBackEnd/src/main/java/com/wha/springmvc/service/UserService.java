@@ -28,14 +28,27 @@ public interface UserService {
 	public boolean isUserExist(User user);
 	
 	//Les methodes de traitement des clients
+	Client findClientById(int id);
 	Client findClientByName(String name);
 	void saveClient(Client client);
-	
+	 List<Client> findAllClients();
+	 void deleteClientById(int id);
+	 void deleteAllClients();
+	 
 	//les methodes de traitement des agents
+	Agent findAgentById(int id);
 	Agent findAgentByName(String name);
 	void saveAgent(Agent agent);
+	List<Agent> findAllAgents();
+	 void deleteAgentById(int id);
+	 void deleteAllAgents();
 	
-	//les methodes de traitement des admin
+	
+	//les methodes de traitement des admin	
+	    Admin findAdminById(int id);
 		Admin findAdminByName(String name);
 		void saveAdmin(Admin admin);
+		List<Admin> findAllAdmins() ;
+		void deleteAdminById(int id);
+		void deleteAllAdmins();
 }

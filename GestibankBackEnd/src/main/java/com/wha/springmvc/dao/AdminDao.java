@@ -6,12 +6,12 @@ import com.wha.springmvc.model.Admin;
 
 public interface AdminDao {
 
-	Admin findById(int id);
-	Admin findByName(String name);
+	Admin findAdminById(int id);
+	Admin findAdminByName(String name);
 	void save(Admin admin);
-	void deleteUserById(int id);
-	List<Admin> findAllUsers();
-	void deleteAllUsers();
+	List<Admin> findAllAdmins();
+	void deleteAdminById(int id);
+	void deleteAllAdmins();
 }
 
 

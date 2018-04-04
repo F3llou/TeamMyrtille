@@ -14,13 +14,13 @@ import com.wha.springmvc.dao.AbstractDao;
 @Repository("adminDao")
 public class AdminDaoImpl extends AbstractDao<Integer, Admin> implements AdminDao {
 
-	public Admin findById(int id){
+	public Admin findAdminById(int id){
 		Admin admin = getByKey(id);
 		return admin;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Admin> findAllUsers(){
+	public List<Admin> findAllAdmins(){
 	List<Admin> admins = getEntityManager().createQuery("SELECT u FROM Admin u ORDER BY u.username ASC").getResultList();
 	return admins;
 	}
@@ -34,16 +34,8 @@ public class AdminDaoImpl extends AbstractDao<Integer, Admin> implements AdminDa
 		delete(admin);
 	}
 	
-	//An alternative to Hibernate.initialize()
-	/*protected void initializeCollection(Collection<?> collection){
-	*	if(collection == null){
-	*		return;
-	*	}
-	*	collection.iterator().hasNext();
-	}*/
 	
-	@Override
-	public Admin findByName(String name){
+	public Admin findAdminByName(String name){
 		System.out.println("name : "+name);
 		try{
 			Admin admin = (Admin) getEntityManager().createQuery("SELECT u FROM Admin u WHERE u.username LIKE :name").setParameter("name",  name).getSingleResult();
@@ -53,14 +45,14 @@ public class AdminDaoImpl extends AbstractDao<Integer, Admin> implements AdminDa
 		}
 	}
 	
-	@Override
-	public void deleteUserById(int id){
+	
+	public void deleteAdminById(int id){
 		Admin admin = getByKey(id);
 		delete(admin);
 	}
 	
-	@Override
-	public void deleteAllUsers(){
-		//
+	
+	public void deleteAllAdmins(){
+		
 	}
 }

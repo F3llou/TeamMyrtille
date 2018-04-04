@@ -19,7 +19,7 @@ public interface ClientDao {
 	 * @param id Identifiant utilisé pour la recherche du client
 	 * @return client Retourne l'utilisateur trouvé
 	 */
-	Client findById(int id);
+	Client findClientById(int id);
 	
 	/**
 	 * Retrouver un client par son nom (username)
@@ -28,7 +28,7 @@ public interface ClientDao {
 	 * @return client Profil du client retrouvé
 	 * @return null Rien n'est retourné s'il n'y a pas de résultat
 	 */
-	Client findByName(String name);
+	Client findClientByName(String name);
 	
 	/**
 	 * Sauvegarde du profil client
@@ -43,20 +43,20 @@ public interface ClientDao {
 	 * 
 	 * @param id Identifiant du client à effacer
 	 */
-	void deleteUserById(int id);
+	void deleteClientById(int id);
 	
 	/**
 	 * Recherche de tous les clients
 	 * 
 	 * @return clients Retourne une liste de tous les clients
 	 */
-	List<Client> findAllUsers();
+	List<Client> findAllClients();
 	
 	/**
 	 * Efface tous les clients
 	 * (pas de méthode pour le moment)
 	 */
-	void deleteAllUsers();
+	void deleteAllClients();
 	
 	/**
 	 * Efface un client par son ssoId

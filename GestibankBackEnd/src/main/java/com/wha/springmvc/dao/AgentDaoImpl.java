@@ -14,7 +14,7 @@ import com.wha.springmvc.model.Agent;
 @Repository("agentDao")
 public class AgentDaoImpl extends AbstractDao<Integer, Agent> implements AgentDao {
 
-	public Agent findById(int id){
+	public Agent findAgentById(int id){
 		Agent agent = getByKey(id);
 		return agent;
 	}
@@ -34,16 +34,8 @@ public class AgentDaoImpl extends AbstractDao<Integer, Agent> implements AgentDa
 		delete(agent);
 	}
 	
-	//An alternative to Hibernate.initialize()
-	/*protected void initializeCollection(Collection<?> collection){
-	*	if(collection == null){
-	*		return;
-	*	}
-	*	collection.iterator().hasNext();
-	}*/
 	
-	@Override
-	public Agent findByName(String name){
+	public Agent findAgentByName(String name){
 		System.out.println("name : "+name);
 		try{
 			Agent agent = (Agent) getEntityManager().createQuery("SELECT u FROM Agent u WHERE u.username LIKE :name").setParameter("name",  name).getSingleResult();
@@ -54,19 +46,15 @@ public class AgentDaoImpl extends AbstractDao<Integer, Agent> implements AgentDa
 	}
 	
 	@Override
-	public void deleteUserById(int id){
+	public void deleteAgentById(int id){
 		Agent agent = getByKey(id);
 		delete(agent);
 	}
 	
 	@Override
-	public void deleteAllUsers(){
+	public void deleteAllAgents(){
 		//
 	}
 
-	@Override
-	public List<Agent> findAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }

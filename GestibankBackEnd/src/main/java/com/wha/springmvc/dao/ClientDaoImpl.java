@@ -26,7 +26,7 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
 	 * @return client Retourne l'utilisateur trouvé
 	 */
 	@Override
-	public Client findById(int id) {
+	public Client findClientById(int id) {
 		Client client = getByKey(id);
 		return client;
 	}
@@ -39,7 +39,7 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
 	 * @return null Rien n'est retourné s'il n'y a pas de résultat
 	 */
 	@Override
-	public Client findByName(String name) {
+	public Client findClientByName(String name) {
 		// TODO Auto-generated method stub
 		System.out.println("name : "+name);
 		try {
@@ -68,7 +68,7 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
 	 * @param id Identifiant du client à effacer
 	 */
 	@Override
-	public void deleteUserById(int id) {
+	public void deleteClientById(int id) {
 		Client client = getByKey(id);
 		delete(client);
 	}
@@ -80,7 +80,7 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Client> findAllUsers() {
+	public List<Client> findAllClients() {
 		List<Client> clients = getEntityManager().createQuery("SELECT u FROM User u WHERE u.TYPE_ENTITE = 'CL' ORDER BY u.username ASC").getResultList();
 		return clients;
 	}
@@ -90,7 +90,7 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
 	 * (pas de méthode pour le moment)
 	 */
 	@Override
-	public void deleteAllUsers() {
+	public void deleteAllClients() {
 		// TODO Auto-generated method stub
 
 	}

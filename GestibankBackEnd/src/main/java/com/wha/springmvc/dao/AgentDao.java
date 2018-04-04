@@ -6,10 +6,10 @@ import com.wha.springmvc.model.Agent;
 
 public interface AgentDao {
 
-	Agent findById(int id);
-	Agent findByName(String name);
+	Agent findAgentById(int id);
+	Agent findAgentByName(String name);
 	void save(Agent agent);
-	void deleteUserById(int id);
-	List<Agent> findAllUsers();
-	void deleteAllUsers();
+	void deleteAgentById(int id);
+	List<Agent> findAllAgents();
+	void deleteAllAgents();
 }

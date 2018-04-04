@@ -54,12 +54,6 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	public User findById(long id) {
-//		for(User user : users){
-//			if(user.getId() == id){
-//				return user;
-//			}
-//		}
-//		return null;
 		return dao.findById((int)id);
 	}
 	
@@ -80,24 +74,20 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public void updateUser(User user) {
-//		int index = users.indexOf(user);
-//		users.set(index, user);
 		User entity = dao.findById((int)user.getId());
 		if(entity!=null){
+			entity.setLogin(user.getLogin());
+			entity.setMdp(user.getMdp());
+			entity.setPrenom(user.getPrenom());
 			entity.setUsername(user.getUsername());
 			entity.setAddress(user.getAddress());
 			entity.setEmail(user.getEmail());
+			entity.setNumTel(user.getNumTel());
 		}
 		dao.save(entity);
 	}
 
 	public void deleteUserById(long id) {
-//		for (Iterator<User> iterator = users.iterator(); iterator.hasNext(); ) {
-//		    User user = iterator.next();
-//		    if (user.getId() == id) {
-//		        iterator.remove();
-//		    }
-//		}
 		dao.deleteUserById((int)id);
 	}
 
@@ -109,48 +99,88 @@ public class UserServiceImpl implements UserService{
 		//users.clear();
 	}
 //partie client
-	@Override
+	public Client findClientById(int id) {
+		return cdao.findClientById((int)id);
+	}
 	public Client findClientByName(String name) {
 		// TODO Auto-generated method stub
-		return cdao.findByName(name);
+		return cdao.findClientByName(name);
 	}
 
-	@Override
 	public void saveClient(Client client) {
 		// TODO Auto-generated method stub
 		cdao.save(client);
 	}
-//partie agent
-	@Override
-	public Agent findAgentByName(String name) {
-		// TODO Auto-generated method stub
-		return agdao.findByName(name);
+	public List<Client> findAllClients() {
+		//return users;
+		return cdao.findAllClients();
+	}
+	
+	public void deleteClientById(int id) {
+		cdao.deleteClientById((int)id);
 	}
 
-	@Override
+	
+	public void deleteAllClients(){
+		
+	}
+	
+//partie agent
+	public Agent findAgentById(int id) {
+		return agdao.findAgentById((int)id);
+	}
+
+	public Agent findAgentByName(String name) {
+		// TODO Auto-generated method stub
+		return agdao.findAgentByName(name);
+	}
+
+	
 	public void saveAgent(Agent agent) {
 		// TODO Auto-generated method stub
 		agdao.save(agent);
 	}
-//partie admin
-	@Override
-	public Admin findAdminByName(String name) {
-		// TODO Auto-generated method stub
-		return addao.findByName(name);
+	public List<Agent> findAllAgents() {
+		//return users;
+		return agdao.findAllAgents();
+	}
+	
+	public void deleteAgentById(int id) {
+		agdao.deleteAgentById((int)id);
 	}
 
-	@Override
+	
+	public void deleteAllAgents(){
+		
+	}
+//partie admin
+	public Admin findAdminById(int id) {
+		return addao.findAdminById((int)id);
+	}
+
+	public Admin findAdminByName(String name) {
+		// TODO Auto-generated method stub
+		return addao.findAdminByName(name);
+	}
+
+
 	public void saveAdmin(Admin admin) {
 		// TODO Auto-generated method stub
 		addao.save(admin);
 	}
+	public List<Admin> findAllAdmins() {
+		//return users;
+		return addao.findAllAdmins();
+	}
 	
-//	private static List<User> populateDummyUsers(){
-//		List<User> users = new ArrayList<User>();
-//		users.add(new User(counter.incrementAndGet(),"Sam", "PARIS", "sam@abc.com"));
-//		users.add(new User(counter.incrementAndGet(),"wajih", "rue albert 1er COLOMBES", "wajih@formation.com"));
-//		users.add(new User(counter.incrementAndGet(),"Tomy", "ALBAMA", "tomy@abc.com"));
-//		return users;
-//	}
+	public void deleteAdminById(int id) {
+		addao.deleteAdminById((int)id);
+	}
+
+	
+	public void deleteAllAdmins(){
+		
+	}
+
 
 }
