@@ -7,6 +7,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 
  * @author TeamMyrtille
@@ -20,6 +22,7 @@ public class Agent extends User{
 	private int matricule;
 	private Date dateDeb;
 	
+	@JsonIgnore
 	@OneToMany
 	private List<Client> listClients;
 	

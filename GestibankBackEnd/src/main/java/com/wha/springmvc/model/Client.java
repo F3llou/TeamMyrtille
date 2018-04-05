@@ -6,6 +6,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 
  * @author TeamMyrtille
@@ -19,6 +21,7 @@ public class Client extends User{
 	private int nbEnfant;
 	private String situationMaritale;
 	
+	@JsonIgnore
 	@OneToMany
 	private List<Compte> listComptes;
 	

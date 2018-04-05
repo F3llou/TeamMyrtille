@@ -129,7 +129,7 @@ public class HelloWorldRestController {
     }
  
     //------------------- Recherche Client par nom --------------------
-    @RequestMapping(value="/client/{nom}", method = RequestMethod.GET)
+    @RequestMapping(value="/client/name/{nom}", method = RequestMethod.GET)
     public ResponseEntity<Client> rechercheClientParNom(@PathVariable("nom") String n){
     	Client cli = userService.findClientByName(n);
     	if(cli == null) {
@@ -137,5 +137,37 @@ public class HelloWorldRestController {
     	}else {
     		return new ResponseEntity<Client>(cli, HttpStatus.OK);
     	}
+    }
+    
+    
+    //------------------- Recherche Client par id --------------------
+  
+    @RequestMapping(value = "/client/id/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Client> getClient(@PathVariable("id") int id) {
+        System.out.println("Fetching Client with id " + id);
+        Client client = userService.findClientById(id);
+        if (client == null) {
+            System.out.println("Client with id " + id + " not found");
+            return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Client>(client, HttpStatus.OK);
+    }
+    
+    //------------------- Create Client par id --------------------
+    
+    @RequestMapping(value = "/client/", method = RequestMethod.POST)
+    public ResponseEntity<Void> createClient(@RequestBody Client client,    UriComponentsBuilder ucBuilder) {
+        System.out.println("Creating Client " + client.getUsername());
+ 
+        if (userService.isUserExist(client)) {
+            System.out.println("A Client with name " + client.getUsername() + " already exist");
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }
+ 
+        userService.saveClient(client);
+ 
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/client/{id}").buildAndExpand(client.getId()).toUri());
+        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 }
