@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 /**
@@ -16,8 +17,8 @@ import javax.persistence.OneToMany;
 @DiscriminatorValue("AD")
 public class Admin extends User {
 	
-	@OneToMany
-	private List<Agent> listAgents;
+	@OneToMany(fetch=FetchType.LAZY)
+	private List<Admin> listAdmins;
 
 	public Admin() {
 		super();
@@ -30,13 +31,15 @@ public class Admin extends User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public List<Agent> getListAgents() {
-		return listAgents;
+	public List<Admin> getListAdmins() {
+		return listAdmins;
 	}
 
-	public void setListAgents(List<Agent> listAgents) {
-		this.listAgents = listAgents;
+	public void setListAdmins(List<Admin> listAdmins) {
+		this.listAdmins = listAdmins;
 	}
+
+	
 
 	// getter and setter
 

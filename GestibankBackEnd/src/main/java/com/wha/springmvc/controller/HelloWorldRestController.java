@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
-
+import com.wha.springmvc.model.Agent;
+import com.wha.springmvc.model.Admin;
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.User;
+import com.wha.springmvc.service.CompteService;
+import com.wha.springmvc.service.OperationService;
 import com.wha.springmvc.service.UserService;
  
 @RestController
@@ -23,7 +26,12 @@ public class HelloWorldRestController {
  
     @Autowired
     UserService userService;  //Service which will do all data retrieval/manipulation work
- 
+    
+    @Autowired
+    CompteService compteService; 
+    
+    @Autowired
+    OperationService operationService; 
     
     //-------------------Retrieve All Users--------------------------------------------------------
      
@@ -128,7 +136,7 @@ public class HelloWorldRestController {
         return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
     }
  
-    //------------------- Recherche Client par nom --------------------
+   //------------------- Recherche Client par nom --------------------
     @RequestMapping(value="/client/name/{nom}", method = RequestMethod.GET)
     public ResponseEntity<Client> rechercheClientParNom(@PathVariable("nom") String n){
     	Client cli = userService.findClientByName(n);
@@ -153,11 +161,12 @@ public class HelloWorldRestController {
         return new ResponseEntity<Client>(client, HttpStatus.OK);
     }
     
-    //------------------- Create Client par id --------------------
+    //------------------- Create Client --------------------
     
-    @RequestMapping(value = "/client/", method = RequestMethod.POST)
+    @RequestMapping(value = "/client/id/", method = RequestMethod.POST)
     public ResponseEntity<Void> createClient(@RequestBody Client client,    UriComponentsBuilder ucBuilder) {
-        System.out.println("Creating Client " + client.getUsername());
+        System.out.println("Creating Client "+client.getId()+" " + client.getUsername()+" " +client.getAddress()+" "+client.getEmail()+" "+
+        		client.getLogin()+" "+client.getMdp()+" "+client.getNbEnfant()+" "+client.getNumTel()+" "+client.getPrenom()+" "+client.getSituationMaritale());
  
         if (userService.isUserExist(client)) {
             System.out.println("A Client with name " + client.getUsername() + " already exist");
@@ -167,7 +176,7 @@ public class HelloWorldRestController {
         userService.saveClient(client);
  
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/client/{id}").buildAndExpand(client.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/client/id/{id}").buildAndExpand(client.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 }

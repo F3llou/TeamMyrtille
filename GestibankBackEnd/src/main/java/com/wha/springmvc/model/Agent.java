@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,7 +24,7 @@ public class Agent extends User{
 	private Date dateDeb;
 	
 	@JsonIgnore
-	@OneToMany
+	@OneToMany(fetch=FetchType.LAZY)
 	private List<Client> listClients;
 	
 	public Agent() {

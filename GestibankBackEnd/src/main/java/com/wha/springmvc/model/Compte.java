@@ -2,9 +2,11 @@ package com.wha.springmvc.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,13 +31,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Compte {
 
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
+	//@GeneratedValue (strategy = GenerationType.AUTO)
+	//@Column(name = "id", updatable = false, nullable = false)
 	private int id;
 	private double solde;
 	private String type;
 	
 	@JsonIgnore
-	@OneToMany
+	@OneToMany(fetch=FetchType.LAZY)
 	private List<Operation> listOperations;
 	
 	public Compte(){

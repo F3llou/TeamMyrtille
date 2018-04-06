@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,7 +23,7 @@ public class Client extends User{
 	private String situationMaritale;
 	
 	@JsonIgnore
-	@OneToMany
+	@OneToMany(fetch=FetchType.LAZY)
 	private List<Compte> listComptes;
 	
 	public Client() {

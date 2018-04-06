@@ -2,6 +2,7 @@ package com.wha.springmvc.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -26,7 +27,8 @@ import javax.persistence.Table;
 public class Operation {
 	
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
+	//@GeneratedValue (strategy = GenerationType.AUTO)
+	//@Column(name = "id", updatable = false, nullable = false)
 	private int id;
 	private Date dateOperation;
 	private double montant;

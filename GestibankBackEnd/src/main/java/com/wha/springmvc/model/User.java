@@ -2,6 +2,7 @@ package com.wha.springmvc.model;
 
 //import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -29,7 +30,8 @@ import javax.persistence.Table;
 public class User {
 
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
+	//@GeneratedValue (strategy = GenerationType.IDENTITY)
+	//@Column(name = "id")
 	private int id;
 	private String login;
 	private String mdp;
