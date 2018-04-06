@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
 public class Admin extends User {
 	
 	@OneToMany(fetch=FetchType.LAZY)
-	private List<Admin> listAdmins;
+	private List<Agent> listAgents;
 
 	public Admin() {
 		super();
@@ -31,12 +31,12 @@ public class Admin extends User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public List<Admin> getListAdmins() {
-		return listAdmins;
+	public List<Agent> getListAgents() {
+		return listAgents;
 	}
 
-	public void setListAdmins(List<Admin> listAdmins) {
-		this.listAdmins = listAdmins;
+	public void setListAgents(List<Agent> listAgents) {
+		this.listAgents = listAgents;
 	}
 
 	
