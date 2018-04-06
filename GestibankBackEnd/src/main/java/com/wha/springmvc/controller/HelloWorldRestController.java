@@ -98,7 +98,6 @@ public class HelloWorldRestController {
         currentUser.setAddress(user.getAddress());
         currentUser.setEmail(user.getEmail());
         currentUser.setLogin(user.getLogin());
-        currentUser.setMdp(user.getMdp());
         currentUser.setPrenom(user.getPrenom());		
         currentUser.setNumTel(user.getNumTel());
          
