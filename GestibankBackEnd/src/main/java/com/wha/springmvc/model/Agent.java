@@ -23,10 +23,6 @@ public class Agent extends User{
 	private int matricule;
 	private Date dateDeb;
 	
-	@JsonIgnore
-	@OneToMany(fetch=FetchType.LAZY)
-	private List<Client> listClients;
-	
 	public Agent() {
 		super();
 	}
@@ -89,14 +85,6 @@ public class Agent extends User{
 		if (matricule != other.matricule)
 			return false;
 		return true;
-	}
-
-	public List<Client> getListClients() {
-		return listClients;
-	}
-
-	public void setListClients(List<Client> listClients) {
-		this.listClients = listClients;
 	}
 
 }

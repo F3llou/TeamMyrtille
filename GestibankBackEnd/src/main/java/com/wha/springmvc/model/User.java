@@ -1,18 +1,24 @@
 package com.wha.springmvc.model;
 
+import java.util.List;
+
 //import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 //import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //import org.springframework.beans.factory.annotation.Autowired;
 
@@ -40,6 +46,10 @@ public class User {
 	private String address;
 	private String email;
 	private String numTel;
+	
+	@JsonIgnore
+	@OneToMany(fetch=FetchType.LAZY)
+	private List<User> listUsers;
 	
 	//@OneToMany
 	//private List<Demande> listDemandes;
@@ -199,6 +209,14 @@ public class User {
 		} else if (!username.equals(other.username))
 			return false;
 		return true;
+	}
+
+	public List<User> getListUsers() {
+		return listUsers;
+	}
+
+	public void setListUsers(List<User> listUsers) {
+		this.listUsers = listUsers;
 	}
 
 	/*public List<Demande> getListDemandes() {

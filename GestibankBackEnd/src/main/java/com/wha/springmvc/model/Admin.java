@@ -16,9 +16,6 @@ import javax.persistence.OneToMany;
 @Entity
 @DiscriminatorValue("AD")
 public class Admin extends User {
-	
-	@OneToMany(fetch=FetchType.LAZY)
-	private List<Agent> listAgents;
 
 	public Admin() {
 		super();
@@ -30,16 +27,6 @@ public class Admin extends User {
 		super(id, login, mdp, username, prenom, address, email, numTel);
 		// TODO Auto-generated constructor stub
 	}
-
-	public List<Agent> getListAgents() {
-		return listAgents;
-	}
-
-	public void setListAgents(List<Agent> listAgents) {
-		this.listAgents = listAgents;
-	}
-
-	
 
 	// getter and setter
 
