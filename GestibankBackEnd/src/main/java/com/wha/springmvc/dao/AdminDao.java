@@ -9,9 +9,8 @@ public interface AdminDao {
 	Admin findAdminById(int id);
 	Admin findAdminByName(String name);
 	void save(Admin admin);
-	List<Admin> findAllAdmins();
 	void deleteAdminById(int id);
-	void deleteAllAdmins();
+
 }
 
 

@@ -170,19 +170,13 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		addao.save(admin);
 	}
-	public List<Admin> findAllAdmins() {
-		//return users;
-		return addao.findAllAdmins();
-	}
+	
 	
 	public void deleteAdminById(int id) {
 		addao.deleteAdminById((int)id);
 	}
 
 	
-	public void deleteAllAdmins(){
-		
-	}
-
+	
 
 }

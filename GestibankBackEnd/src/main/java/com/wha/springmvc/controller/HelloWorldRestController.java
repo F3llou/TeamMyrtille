@@ -136,21 +136,9 @@ public class HelloWorldRestController {
         userService.deleteAllUsers();
         return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
     }
- 
-   //------------------- Recherche Client par nom --------------------
-    @RequestMapping(value="/client/name/{nom}", method = RequestMethod.GET)
-    public ResponseEntity<Client> rechercheClientParNom(@PathVariable("nom") String n){
-    	Client cli = userService.findClientByName(n);
-    	if(cli == null) {
-    		return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
-    	}else {
-    		return new ResponseEntity<Client>(cli, HttpStatus.OK);
-    	}
-    }
+                       //PARTIE CLIENT
+  //------------------- Recherche Client par id --------------------
     
-    
-    //------------------- Recherche Client par id --------------------
-  
     @RequestMapping(value = "/client/id/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Client> getClient(@PathVariable("id") int id) {
         System.out.println("Fetching Client with id " + id);
@@ -162,6 +150,17 @@ public class HelloWorldRestController {
         return new ResponseEntity<Client>(client, HttpStatus.OK);
     }
     
+   //------------------- Recherche Client par nom --------------------
+    @RequestMapping(value="/client/name/{nom}", method = RequestMethod.GET)
+    public ResponseEntity<Client> rechercheClientParNom(@PathVariable("nom") String n){
+    	Client cli = userService.findClientByName(n);
+    	if(cli == null) {
+    		return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
+    	}else {
+    		return new ResponseEntity<Client>(cli, HttpStatus.OK);
+    	}
+    }
+      
     //------------------- Create Client --------------------
     
     @RequestMapping(value = "/client/id/", method = RequestMethod.POST)
@@ -180,4 +179,50 @@ public class HelloWorldRestController {
         headers.setLocation(ucBuilder.path("/client/id/{id}").buildAndExpand(client.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
+
+
+
+
+//-------------------Retrieve All Client--------------------------------------------------------
+
+@RequestMapping(value = "/client/", method = RequestMethod.GET)
+@CrossOrigin(origins = "http://localhost:4200")
+public ResponseEntity<List<Client>> listAllClients() {
+    List<Client> clients = userService.findAllClients();
+    if(clients.isEmpty()){
+        return new ResponseEntity<List<Client>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+    }
+    return new ResponseEntity<List<Client>>(clients, HttpStatus.OK);
 }
+
+//------------------- Delete a Client --------------------------------------------------------
+
+@RequestMapping(value = "/client/{id}", method = RequestMethod.DELETE)
+public ResponseEntity<Client> deleteClient(@PathVariable("id") int id) {
+    System.out.println("Fetching & Deleting Client with id " + id);
+
+    Client client = userService.findClientById(id);
+    if (client == null) {
+        System.out.println("Unable to delete. Client with id " + id + " not found");
+        return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
+    }
+
+    userService.deleteClientById(id);
+    return new ResponseEntity<Client>(HttpStatus.NO_CONTENT);
+}
+
+ 
+
+//------------------- Delete All Users --------------------------------------------------------
+ 
+@RequestMapping(value = "/client/", method = RequestMethod.DELETE)
+public ResponseEntity<Client> deleteAllClients() {
+    System.out.println("Deleting All clients");
+
+    userService.deleteAllClients();
+    return new ResponseEntity<Client>(HttpStatus.NO_CONTENT);
+}
+
+
+}
+

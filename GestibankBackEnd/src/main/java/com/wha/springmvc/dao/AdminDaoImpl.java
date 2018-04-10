@@ -18,13 +18,7 @@ public class AdminDaoImpl extends AbstractDao<Integer, Admin> implements AdminDa
 		Admin admin = getByKey(id);
 		return admin;
 	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Admin> findAllAdmins(){
-	List<Admin> admins = getEntityManager().createQuery("SELECT u FROM Admin u ORDER BY u.username ASC").getResultList();
-	return admins;
-	}
-	
+		
 	public void save(Admin admin){
 		persist(admin);
 	}
@@ -52,7 +46,5 @@ public class AdminDaoImpl extends AbstractDao<Integer, Admin> implements AdminDa
 	}
 	
 	
-	public void deleteAllAdmins(){
-		
-	}
+	
 }

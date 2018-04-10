@@ -48,7 +48,5 @@ public interface UserService {
 	    Admin findAdminById(int id);
 		Admin findAdminByName(String name);
 		void saveAdmin(Admin admin);
-		List<Admin> findAllAdmins() ;
 		void deleteAdminById(int id);
-		void deleteAllAdmins();
 }
