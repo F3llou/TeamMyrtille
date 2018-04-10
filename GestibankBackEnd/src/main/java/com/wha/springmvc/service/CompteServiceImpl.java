@@ -11,7 +11,6 @@ import com.wha.springmvc.dao.CompteAvecDecouvertDao;
 import com.wha.springmvc.dao.CompteDao;
 import com.wha.springmvc.dao.CompteRemunDao;
 import com.wha.springmvc.dao.CompteSansDecouvertDao;
-import com.wha.springmvc.dao.UserDao;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.CompteAvecDecouv;
 import com.wha.springmvc.model.CompteRemun;
@@ -46,8 +45,6 @@ public class CompteServiceImpl implements CompteService{
 		Compte entity = comdao.findById((int)compte.getId());
 		if(entity!=null){
 			entity.setSolde(compte.getSolde());
-			entity.setType(compte.getType());
-			
 		}
 		comdao.save(entity);
 	}

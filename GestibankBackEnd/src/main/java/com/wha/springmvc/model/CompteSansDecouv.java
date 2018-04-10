@@ -1,5 +1,7 @@
 package com.wha.springmvc.model;
 
+import java.util.Date;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -18,9 +20,8 @@ public class CompteSansDecouv extends Compte {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public CompteSansDecouv(int id, double solde, String type){
-		super(id, solde, type);
+	public CompteSansDecouv(int id, double solde, Date dateDeb){
+		super(id, solde, dateDeb);
 	}
-
 
 }

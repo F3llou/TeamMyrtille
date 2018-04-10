@@ -21,7 +21,7 @@ public class Virement extends Operation{
 	public Virement(){
 	}
 	
-	public Virement(int id, Date dateOperation, double montant){
+	public Virement(int id, Date dateOperation, double montant, String ribDepart, String ribArrivee){
 		super(id, dateOperation, montant);
 		this.ribDepart=ribDepart;
 		this.ribArrivee=ribArrivee;
@@ -46,18 +46,15 @@ public class Virement extends Operation{
 
 	@Override
 	public String toString() {
-		return "Virement [getRibDepart()=" + getRibDepart()
-				+ ", getRibArrivee()=" + getRibArrivee() + "]";
+		return "Virement [getRibDepart()=" + getRibDepart() + ", getRibArrivee()=" + getRibArrivee() + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result
-				+ ((ribArrivee == null) ? 0 : ribArrivee.hashCode());
-		result = prime * result
-				+ ((ribDepart == null) ? 0 : ribDepart.hashCode());
+		result = prime * result + ((ribArrivee == null) ? 0 : ribArrivee.hashCode());
+		result = prime * result + ((ribDepart == null) ? 0 : ribDepart.hashCode());
 		return result;
 	}
 

@@ -2,9 +2,6 @@ package com.wha.springmvc.model;
 
 import java.util.List;
 
-//import java.util.List;
-
-import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -15,12 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
-//import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-//import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 
@@ -36,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class User {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private String login;
 	private String mdp;
@@ -50,8 +44,9 @@ public class User {
 	@OneToMany(fetch=FetchType.LAZY)
 	private List<User> listUsers;
 	
-	//@OneToMany
-	//private List<Demande> listDemandes;
+	@JsonIgnore
+	@OneToMany(fetch=FetchType.LAZY)
+	private List<Demande> listDemandes;
 	
 	public User(){
 		id=0;
@@ -68,10 +63,7 @@ public class User {
 		this.numTel = numTel;
 	}
 
-	
 	// getter and setter
-	
-	
 	public int getId() {
 		return id;
 	}
@@ -136,13 +128,28 @@ public class User {
 		this.numTel = numTel;
 	}
 
+	public List<User> getListUsers() {
+		return listUsers;
+	}
+
+	public void setListUsers(List<User> listUsers) {
+		this.listUsers = listUsers;
+	}
+
+	public List<Demande> getListDemandes() {
+		return listDemandes;
+	}
+
+	public void setListDemandes(List<Demande> listDemandes) {
+		this.listDemandes = listDemandes;
+	}
+
 	@Override
 	public String toString() {
-		return "User [getId()=" + getId() + ", getLogin()=" + getLogin()
-				+ ", getMdp()=" + getMdp() + ", getPrenom()=" + getPrenom()
-				+ ", getUsername()=" + getUsername() + ", getAddress()="
-				+ getAddress() + ", getEmail()=" + getEmail()
-				+ ", getNumTel()=" + getNumTel() + "]";
+		return "User [getId()=" + getId() + ", getLogin()=" + getLogin() + ", getMdp()=" + getMdp() + ", getPrenom()="
+				+ getPrenom() + ", getUsername()=" + getUsername() + ", getAddress()=" + getAddress() + ", getEmail()="
+				+ getEmail() + ", getNumTel()=" + getNumTel() + ", getListUsers()=" + getListUsers()
+				+ ", getListDemandes()=" + getListDemandes() + "]";
 	}
 
 	@Override
@@ -152,12 +159,13 @@ public class User {
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((listDemandes == null) ? 0 : listDemandes.hashCode());
+		result = prime * result + ((listUsers == null) ? 0 : listUsers.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((mdp == null) ? 0 : mdp.hashCode());
 		result = prime * result + ((numTel == null) ? 0 : numTel.hashCode());
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-		result = prime * result
-				+ ((username == null) ? 0 : username.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -181,6 +189,16 @@ public class User {
 		} else if (!email.equals(other.email))
 			return false;
 		if (id != other.id)
+			return false;
+		if (listDemandes == null) {
+			if (other.listDemandes != null)
+				return false;
+		} else if (!listDemandes.equals(other.listDemandes))
+			return false;
+		if (listUsers == null) {
+			if (other.listUsers != null)
+				return false;
+		} else if (!listUsers.equals(other.listUsers))
 			return false;
 		if (login == null) {
 			if (other.login != null)
@@ -209,21 +227,5 @@ public class User {
 			return false;
 		return true;
 	}
-
-	public List<User> getListUsers() {
-		return listUsers;
-	}
-
-	public void setListUsers(List<User> listUsers) {
-		this.listUsers = listUsers;
-	}
-
-	/*public List<Demande> getListDemandes() {
-		return listDemandes;
-	}
-
-	public void setListDemandes(List<Demande> listDemandes) {
-		this.listDemandes = listDemandes;
-	}*/
 	
 }

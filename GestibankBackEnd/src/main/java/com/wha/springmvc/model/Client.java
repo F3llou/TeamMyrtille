@@ -32,7 +32,7 @@ public class Client extends User{
 	}
 	
 	public Client(int id, String login, String mdp, String username,
-			String prenom, String address, String email, String numTel) {
+			String prenom, String address, String email, String numTel, int nbEnfant, String situationMaritale) {
 		super(id, login, mdp, username, prenom, address, email, numTel);
 		this.nbEnfant = nbEnfant;
 		this.situationMaritale = situationMaritale;
@@ -56,21 +56,27 @@ public class Client extends User{
 		this.situationMaritale = situationMaritale;
 	}
 
+	public List<Compte> getListComptes() {
+		return listComptes;
+	}
+
+	public void setListComptes(List<Compte> listComptes) {
+		this.listComptes = listComptes;
+	}
+
 	@Override
 	public String toString() {
-		return "Client [getNbEnfant()=" + getNbEnfant()
-				+ ", getSituationMaritale()=" + getSituationMaritale() + "]";
+		return "Client [getNbEnfant()=" + getNbEnfant() + ", getSituationMaritale()=" + getSituationMaritale()
+				+ ", getListComptes()=" + getListComptes() + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
+		result = prime * result + ((listComptes == null) ? 0 : listComptes.hashCode());
 		result = prime * result + nbEnfant;
-		result = prime
-				* result
-				+ ((situationMaritale == null) ? 0 : situationMaritale
-						.hashCode());
+		result = prime * result + ((situationMaritale == null) ? 0 : situationMaritale.hashCode());
 		return result;
 	}
 
@@ -83,6 +89,11 @@ public class Client extends User{
 		if (getClass() != obj.getClass())
 			return false;
 		Client other = (Client) obj;
+		if (listComptes == null) {
+			if (other.listComptes != null)
+				return false;
+		} else if (!listComptes.equals(other.listComptes))
+			return false;
 		if (nbEnfant != other.nbEnfant)
 			return false;
 		if (situationMaritale == null) {
@@ -91,14 +102,6 @@ public class Client extends User{
 		} else if (!situationMaritale.equals(other.situationMaritale))
 			return false;
 		return true;
-	}
-
-	public List<Compte> getListComptes() {
-		return listComptes;
-	}
-
-	public void setListComptes(List<Compte> listComptes) {
-		this.listComptes = listComptes;
 	}
 	
 }

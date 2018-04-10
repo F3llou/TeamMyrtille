@@ -1,5 +1,7 @@
 package com.wha.springmvc.model;
 
+import java.util.Date;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -14,28 +16,45 @@ import javax.persistence.Entity;
 public class CompteAvecDecouv extends Compte {
 
 	private double decouvert;
+	private Date dateDecouv;
 	
 	public CompteAvecDecouv() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public CompteAvecDecouv(int id, double solde, String type) {
-		super(id, solde, type);
+	public CompteAvecDecouv(int id, double solde, Date dateDeb, double decouvert, Date dateDecouv) {
+		super(id, solde, dateDeb);
+		this.decouvert = decouvert;
+		this.dateDecouv=dateDecouv;
+	}
+
+	public double getDecouvert() {
+		return decouvert;
+	}
+
+	public void setDecouvert(double decouvert) {
 		this.decouvert = decouvert;
 	}
 
+	public Date getDateDecouv() {
+		return dateDecouv;
+	}
 
+	public void setDateDecouv(Date dateDecouv) {
+		this.dateDecouv = dateDecouv;
+	}
 
 	@Override
 	public String toString() {
-		return "CompteAvecDecouv [hashCode()=" + hashCode() + "]";
+		return "CompteAvecDecouv [getDecouvert()=" + getDecouvert() + ", getDateDecouv()=" + getDateDecouv() + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
+		result = prime * result + ((dateDecouv == null) ? 0 : dateDecouv.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(decouvert);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -51,10 +70,14 @@ public class CompteAvecDecouv extends Compte {
 		if (getClass() != obj.getClass())
 			return false;
 		CompteAvecDecouv other = (CompteAvecDecouv) obj;
+		if (dateDecouv == null) {
+			if (other.dateDecouv != null)
+				return false;
+		} else if (!dateDecouv.equals(other.dateDecouv))
+			return false;
 		if (Double.doubleToLongBits(decouvert) != Double.doubleToLongBits(other.decouvert))
 			return false;
 		return true;
 	}
 	
-
 }

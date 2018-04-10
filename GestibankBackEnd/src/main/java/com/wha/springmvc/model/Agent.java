@@ -1,14 +1,9 @@
 package com.wha.springmvc.model;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * 

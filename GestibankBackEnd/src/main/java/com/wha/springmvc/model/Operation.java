@@ -2,7 +2,6 @@ package com.wha.springmvc.model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -27,7 +26,7 @@ import javax.persistence.Table;
 public class Operation {
 	
 	@Id
-	//@GeneratedValue (strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	//@Column(name = "id", updatable = false, nullable = false)
 	private int id;
 	private Date dateOperation;
@@ -70,17 +69,15 @@ public class Operation {
 
 	@Override
 	public String toString() {
-		return "Operation [getId()=" + getId()
-				+ ", getDateOperation()=" + getDateOperation()
-				+ ", getMontant()=" + getMontant() + "]";
+		return "Operation [getId()=" + getId() + ", getDateOperation()=" + getDateOperation() + ", getMontant()="
+				+ getMontant() + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((dateOperation == null) ? 0 : dateOperation.hashCode());
+		result = prime * result + ((dateOperation == null) ? 0 : dateOperation.hashCode());
 		result = prime * result + id;
 		long temp;
 		temp = Double.doubleToLongBits(montant);
@@ -104,8 +101,7 @@ public class Operation {
 			return false;
 		if (id != other.id)
 			return false;
-		if (Double.doubleToLongBits(montant) != Double
-				.doubleToLongBits(other.montant))
+		if (Double.doubleToLongBits(montant) != Double.doubleToLongBits(other.montant))
 			return false;
 		return true;
 	}

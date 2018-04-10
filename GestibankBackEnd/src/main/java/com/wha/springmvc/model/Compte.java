@@ -1,8 +1,8 @@
 package com.wha.springmvc.model;
 
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -31,11 +31,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Compte {
 
 	@Id
-	//@GeneratedValue (strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	//@Column(name = "id", updatable = false, nullable = false)
 	private int id;
 	private double solde;
-	private String type;
+	private Date dateDeb;
 	
 	@JsonIgnore
 	@OneToMany(fetch=FetchType.LAZY)
@@ -45,10 +45,10 @@ public class Compte {
 		id=0;
 	}
 	
-	public Compte(int id, double solde, String type){
+	public Compte(int id, double solde, Date dateDeb){
 		this.id=id;
 		this.solde = solde;
-		this.type = type;
+		this.dateDeb=dateDeb;
 	}
 	
 	//getter and setters
@@ -69,28 +69,38 @@ public class Compte {
 		this.solde = solde;
 	}
 
-	public String getType() {
-		return type;
+	public List<Operation> getListOperations() {
+		return listOperations;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setListOperations(List<Operation> listOperations) {
+		this.listOperations = listOperations;
+	}
+
+	public Date getDateDeb() {
+		return dateDeb;
+	}
+
+	public void setDateDeb(Date dateDeb) {
+		this.dateDeb = dateDeb;
 	}
 
 	@Override
 	public String toString() {
-		return "Compte [id=" + id + ", solde=" + solde + ", type=" + type + "]";
+		return "Compte [getSolde()=" + getSolde() + ", getId()=" + getId() + ", getListOperations()="
+				+ getListOperations() + ", getDateDeb()=" + getDateDeb() + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((dateDeb == null) ? 0 : dateDeb.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((listOperations == null) ? 0 : listOperations.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(solde);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -103,26 +113,21 @@ public class Compte {
 		if (getClass() != obj.getClass())
 			return false;
 		Compte other = (Compte) obj;
+		if (dateDeb == null) {
+			if (other.dateDeb != null)
+				return false;
+		} else if (!dateDeb.equals(other.dateDeb))
+			return false;
 		if (id != other.id)
 			return false;
-		if (Double.doubleToLongBits(solde) != Double.doubleToLongBits(other.solde))
-			return false;
-		if (type == null) {
-			if (other.type != null)
+		if (listOperations == null) {
+			if (other.listOperations != null)
 				return false;
-		} else if (!type.equals(other.type))
+		} else if (!listOperations.equals(other.listOperations))
+			return false;
+		if (Double.doubleToLongBits(solde) != Double.doubleToLongBits(other.solde))
 			return false;
 		return true;
 	}
 
-	public List<Operation> getListOperations() {
-		return listOperations;
-	}
-
-	public void setListOperations(List<Operation> listOperations) {
-		this.listOperations = listOperations;
-	}
-	
-	
-	
 }
