@@ -1,5 +1,6 @@
 package com.wha.springmvc.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.DiscriminatorColumn;
@@ -39,6 +40,7 @@ public class User {
 	private String address;
 	private String email;
 	private String numTel;
+	private Date dateDeb;
 	
 	@JsonIgnore
 	@OneToMany(fetch=FetchType.LAZY)
@@ -52,7 +54,7 @@ public class User {
 		id=0;
 	}
 	
-	public User(int id, String login, String mdp, String username, String prenom, String address, String email, String numTel){
+	public User(int id, String login, String mdp, String username, String prenom, String address, String email, String numTel, Date dateDeb){
 		this.id = id;
 		this.login=login;
 		this.mdp=mdp;
@@ -61,6 +63,7 @@ public class User {
 		this.address = address;
 		this.email = email;
 		this.numTel = numTel;
+		this.dateDeb=dateDeb;
 	}
 
 	// getter and setter
@@ -144,12 +147,20 @@ public class User {
 		this.listDemandes = listDemandes;
 	}
 
+	public Date getDateDeb() {
+		return dateDeb;
+	}
+
+	public void setDateDeb(Date dateDeb) {
+		this.dateDeb = dateDeb;
+	}
+
 	@Override
 	public String toString() {
 		return "User [getId()=" + getId() + ", getLogin()=" + getLogin() + ", getMdp()=" + getMdp() + ", getPrenom()="
 				+ getPrenom() + ", getUsername()=" + getUsername() + ", getAddress()=" + getAddress() + ", getEmail()="
 				+ getEmail() + ", getNumTel()=" + getNumTel() + ", getListUsers()=" + getListUsers()
-				+ ", getListDemandes()=" + getListDemandes() + "]";
+				+ ", getListDemandes()=" + getListDemandes() + ", getDateDeb()=" + getDateDeb() + "]";
 	}
 
 	@Override
@@ -157,6 +168,7 @@ public class User {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((dateDeb == null) ? 0 : dateDeb.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((listDemandes == null) ? 0 : listDemandes.hashCode());
@@ -182,6 +194,11 @@ public class User {
 			if (other.address != null)
 				return false;
 		} else if (!address.equals(other.address))
+			return false;
+		if (dateDeb == null) {
+			if (other.dateDeb != null)
+				return false;
+		} else if (!dateDeb.equals(other.dateDeb))
 			return false;
 		if (email == null) {
 			if (other.email != null)

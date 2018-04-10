@@ -24,4 +24,11 @@ public class CompteSansDecouv extends Compte {
 		super(id, solde, dateDeb);
 	}
 
+	@Override
+	public String toString() {
+		return "CompteSansDecouv [getSolde()=" + getSolde() + ", getId()=" + getId() + ", getListOperations()="
+				+ getListOperations() + ", getDateDeb()=" + getDateDeb() + ", toString()=" + super.toString()
+				+ ", hashCode()=" + hashCode() + ", getClass()=" + getClass() + "]";
+	}
+
 }

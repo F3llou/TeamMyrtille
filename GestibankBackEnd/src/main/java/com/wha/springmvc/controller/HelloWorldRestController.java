@@ -102,6 +102,8 @@ public class HelloWorldRestController {
         currentUser.setLogin(user.getLogin());
         currentUser.setPrenom(user.getPrenom());		
         currentUser.setNumTel(user.getNumTel());
+        currentUser.setDateDeb(user.getDateDeb());
+        currentUser.setMdp(user.getMdp());
          
         userService.updateUser(currentUser);
         return new ResponseEntity<User>(currentUser, HttpStatus.OK);
@@ -166,7 +168,7 @@ public class HelloWorldRestController {
     @RequestMapping(value = "/client/id/", method = RequestMethod.POST)
     public ResponseEntity<Void> createClient(@RequestBody Client client,    UriComponentsBuilder ucBuilder) {
         System.out.println("Creating Client "+client.getId()+" " + client.getUsername()+" " +client.getAddress()+" "+client.getEmail()+" "+
-        		client.getLogin()+" "+client.getMdp()+" "+client.getNbEnfant()+" "+client.getNumTel()+" "+client.getPrenom()+" "+client.getSituationMaritale());
+        		client.getLogin()+" "+client.getMdp()+" "+client.getNbEnfant()+" "+client.getNumTel()+" "+client.getPrenom()+" "+client.getSituationMaritale() + " "+client.getDateDeb());
  
         if (userService.isUserExist(client)) {
             System.out.println("A Client with name " + client.getUsername() + " already exist");
