@@ -23,7 +23,7 @@ import com.wha.springmvc.service.OperationService;
 import com.wha.springmvc.service.UserService;
  
 @RestController
-public class HelloWorldRestController {
+public class RestControllerUser {
  
     @Autowired
     UserService userService;  //Service which will do all data retrieval/manipulation work
