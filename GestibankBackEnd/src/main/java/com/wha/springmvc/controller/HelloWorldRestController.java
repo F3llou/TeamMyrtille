@@ -223,6 +223,93 @@ public ResponseEntity<Client> deleteAllClients() {
     return new ResponseEntity<Client>(HttpStatus.NO_CONTENT);
 }
 
+              //PARTIE AGENT
+//------------------- Recherche Agent par id --------------------
+  
+  @RequestMapping(value = "/agent/id/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Agent> getAgent(@PathVariable("id") int id) {
+      System.out.println("Fetching Agent with id " + id);
+      Agent agent = userService.findAgentById(id);
+      if (agent == null) {
+          System.out.println("Agent with id " + id + " not found");
+          return new ResponseEntity<Agent>(HttpStatus.NOT_FOUND);
+      }
+      return new ResponseEntity<Agent>(agent, HttpStatus.OK);
+  }
+  
+ //------------------- Recherche Agent par nom --------------------
+  @RequestMapping(value="/agent/name/{nom}", method = RequestMethod.GET)
+  public ResponseEntity<Agent> rechercheAgentParNom(@PathVariable("nom") String n){
+  	Agent ag = userService.findAgentByName(n);
+  	if(ag == null) {
+  		return new ResponseEntity<Agent>(HttpStatus.NOT_FOUND);
+  	}else {
+  		return new ResponseEntity<Agent>(ag, HttpStatus.OK);
+  	}
+  }
+    
+  //------------------- Create Agent --------------------
+  
+  @RequestMapping(value = "/agent/id/", method = RequestMethod.POST)
+  public ResponseEntity<Void> createAgent(@RequestBody Agent agent,    UriComponentsBuilder ucBuilder) {
+      System.out.println("Creating Agent "+agent.getId()+" " + agent.getUsername()+" " +agent.getAddress()+" "+agent.getEmail()+" "+
+    		  agent.getLogin()+" "+agent.getMdp()+" "+" "+agent.getNumTel()+" "+agent.getPrenom());
+
+      if (userService.isUserExist(agent)) {
+          System.out.println("A Agent with name " + agent.getUsername() + " already exist");
+          return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+      }
+
+      userService.saveAgent(agent);
+
+      HttpHeaders headers = new HttpHeaders();
+      headers.setLocation(ucBuilder.path("/agent/id/{id}").buildAndExpand(agent.getId()).toUri());
+      return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+  }
+
+
+
+
+//-------------------Retrieve All Agent--------------------------------------------------------
+
+@RequestMapping(value = "/agent/", method = RequestMethod.GET)
+@CrossOrigin(origins = "http://localhost:4200")
+public ResponseEntity<List<Agent>> listAllAgents() {
+  List<Agent> agents = userService.findAllAgents();
+  if(agents.isEmpty()){
+      return new ResponseEntity<List<Agent>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+  }
+  return new ResponseEntity<List<Agent>>(agents, HttpStatus.OK);
+}
+
+//------------------- Delete a Agent --------------------------------------------------------
+
+@RequestMapping(value = "/agent/{id}", method = RequestMethod.DELETE)
+public ResponseEntity<Agent> deleteAgent(@PathVariable("id") int id) {
+  System.out.println("Fetching & Deleting Agent with id " + id);
+
+  Agent agent = userService.findAgentById(id);
+  if (agent == null) {
+      System.out.println("Unable to delete. Agent with id " + id + " not found");
+      return new ResponseEntity<Agent>(HttpStatus.NOT_FOUND);
+  }
+
+  userService.deleteAgentById(id);
+  return new ResponseEntity<Agent>(HttpStatus.NO_CONTENT);
+}
+
+
+
+//------------------- Delete All Agents --------------------------------------------------------
+
+@RequestMapping(value = "/agent/", method = RequestMethod.DELETE)
+public ResponseEntity<Agent> deleteAllAgents() {
+  System.out.println("Deleting All agents");
+
+  userService.deleteAllAgents();
+  return new ResponseEntity<Agent>(HttpStatus.NO_CONTENT);
+}
+
 
 }
 
