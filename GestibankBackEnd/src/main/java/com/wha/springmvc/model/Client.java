@@ -1,5 +1,6 @@
 package com.wha.springmvc.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
@@ -32,8 +33,8 @@ public class Client extends User{
 	}
 	
 	public Client(int id, String login, String mdp, String username,
-			String prenom, String address, String email, String numTel, int nbEnfant, String situationMaritale) {
-		super(id, login, mdp, username, prenom, address, email, numTel);
+			String prenom, String address, String email, String numTel, int nbEnfant, String situationMaritale, Date dateDeb) {
+		super(id, login, mdp, username, prenom, address, email, numTel, dateDeb);
 		this.nbEnfant = nbEnfant;
 		this.situationMaritale = situationMaritale;
 		// TODO Auto-generated constructor stub
@@ -103,5 +104,5 @@ public class Client extends User{
 			return false;
 		return true;
 	}
-	
+
 }

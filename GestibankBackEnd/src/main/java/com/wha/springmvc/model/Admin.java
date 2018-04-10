@@ -1,11 +1,9 @@
 package com.wha.springmvc.model;
 
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 
 /**
  * 
@@ -23,9 +21,18 @@ public class Admin extends User {
 	}
 
 	public Admin(int id, String login, String mdp, String username,
-			String prenom, String address, String email, String numTel) {
-		super(id, login, mdp, username, prenom, address, email, numTel);
+			String prenom, String address, String email, String numTel, Date dateDeb) {
+		super(id, login, mdp, username, prenom, address, email, numTel, dateDeb);
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Admin [getId()=" + getId() + ", getLogin()=" + getLogin() + ", getMdp()=" + getMdp() + ", getPrenom()="
+				+ getPrenom() + ", getUsername()=" + getUsername() + ", getAddress()=" + getAddress() + ", getEmail()="
+				+ getEmail() + ", getNumTel()=" + getNumTel() + ", getListUsers()=" + getListUsers()
+				+ ", getListDemandes()=" + getListDemandes() + ", getDateDeb()=" + getDateDeb() + ", toString()="
+				+ super.toString() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass() + "]";
 	}
 
 	// getter and setter

@@ -24,4 +24,11 @@ public class Depot extends Operation{
 
 	//getter and setter
 	
+	@Override
+	public String toString() {
+		return "Depot [getId()=" + getId() + ", getDateOperation()=" + getDateOperation() + ", getMontant()="
+				+ getMontant() + ", toString()=" + super.toString() + ", hashCode()=" + hashCode() + ", getClass()="
+				+ getClass() + "]";
+	}
+	
 }

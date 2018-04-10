@@ -24,4 +24,11 @@ public class Retrait extends Operation{
 
 	//getter and setter
 	
+	@Override
+	public String toString() {
+		return "Retrait [getId()=" + getId() + ", getDateOperation()=" + getDateOperation() + ", getMontant()="
+				+ getMontant() + ", toString()=" + super.toString() + ", hashCode()=" + hashCode() + ", getClass()="
+				+ getClass() + "]";
+	}
+	
 }
