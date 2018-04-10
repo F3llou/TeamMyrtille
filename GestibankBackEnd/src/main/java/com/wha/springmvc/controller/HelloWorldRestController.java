@@ -310,6 +310,71 @@ public ResponseEntity<Agent> deleteAllAgents() {
   return new ResponseEntity<Agent>(HttpStatus.NO_CONTENT);
 }
 
+//PARTIE ADMIN
+//------------------- Recherche Admin par id --------------------
+
+@RequestMapping(value = "/admin/id/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+public ResponseEntity<Admin> getAdmin(@PathVariable("id") int id) {
+    System.out.println("Fetching Admin with id " + id);
+    Admin admin = userService.findAdminById(id);
+    if (admin == null) {
+        System.out.println("Admin with id " + id + " not found");
+        return new ResponseEntity<Admin>(HttpStatus.NOT_FOUND);
+    }
+    return new ResponseEntity<Admin>(admin, HttpStatus.OK);
+}
+
+//------------------- Recherche Admin par nom --------------------
+@RequestMapping(value="/admin/name/{nom}", method = RequestMethod.GET)
+public ResponseEntity<Admin> rechercheAdminParNom(@PathVariable("nom") String n){
+	Admin ad = userService.findAdminByName(n);
+	if(ad == null) {
+		return new ResponseEntity<Admin>(HttpStatus.NOT_FOUND);
+	}else {
+		return new ResponseEntity<Admin>(ad, HttpStatus.OK);
+	}
+}
+  
+//------------------- Create Admin --------------------
+
+@RequestMapping(value = "/admin/id/", method = RequestMethod.POST)
+public ResponseEntity<Void> createAdmin(@RequestBody Admin admin,    UriComponentsBuilder ucBuilder) {
+    System.out.println("Creating Admin "+admin.getId()+" " + admin.getUsername()+" " +admin.getAddress()+" "+admin.getEmail()+" "+
+    		admin.getLogin()+" "+admin.getMdp()+" "+" "+admin.getNumTel()+" "+admin.getPrenom());
+
+    if (userService.isUserExist(admin)) {
+        System.out.println("A Admin with name " + admin.getUsername() + " already exist");
+        return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+    }
+
+    userService.saveAdmin(admin);
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setLocation(ucBuilder.path("/admin/id/{id}").buildAndExpand(admin.getId()).toUri());
+    return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+}
+
+
+
+
+
+//------------------- Delete a Admin --------------------------------------------------------
+
+@RequestMapping(value = "/admin/{id}", method = RequestMethod.DELETE)
+public ResponseEntity<Admin> deleteAdmin(@PathVariable("id") int id) {
+System.out.println("Fetching & Deleting Admin with id " + id);
+
+Admin admin = userService.findAdminById(id);
+if (admin == null) {
+    System.out.println("Unable to delete. Admin with id " + id + " not found");
+    return new ResponseEntity<Admin>(HttpStatus.NOT_FOUND);
+}
+
+userService.deleteAdminById(id);
+return new ResponseEntity<Admin>(HttpStatus.NO_CONTENT);
+}
+
+
 
 }
 
