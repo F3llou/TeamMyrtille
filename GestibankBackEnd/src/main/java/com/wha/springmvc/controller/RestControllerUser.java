@@ -28,12 +28,6 @@ public class RestControllerUser {
     @Autowired
     UserService userService;  //Service which will do all data retrieval/manipulation work
     
-    @Autowired
-    CompteService compteService; 
-    
-    @Autowired
-    OperationService operationService; 
-    
     //-------------------Retrieve All Users--------------------------------------------------------
      
     @RequestMapping(value = "/user/", method = RequestMethod.GET)
@@ -165,7 +159,7 @@ public class RestControllerUser {
       
     //------------------- Create Client --------------------
     
-    @RequestMapping(value = "/client/id/", method = RequestMethod.POST)
+    @RequestMapping(value = "/client/", method = RequestMethod.POST)
     public ResponseEntity<Void> createClient(@RequestBody Client client,    UriComponentsBuilder ucBuilder) {
         System.out.println("Creating Client "+client.getId()+" " + client.getUsername()+" " +client.getAddress()+" "+client.getEmail()+" "+
         		client.getLogin()+" "+client.getMdp()+" "+client.getNbEnfant()+" "+client.getNumTel()+" "+client.getPrenom()+" "+client.getSituationMaritale() + " "+client.getDateDeb());
@@ -276,7 +270,7 @@ public ResponseEntity<Client> deleteAllClients() {
     
   //------------------- Create Agent --------------------
   
-  @RequestMapping(value = "/agent/id/", method = RequestMethod.POST)
+  @RequestMapping(value = "/agent/", method = RequestMethod.POST)
   public ResponseEntity<Void> createAgent(@RequestBody Agent agent,    UriComponentsBuilder ucBuilder) {
       System.out.println("Creating Agent "+agent.getId()+" " + agent.getUsername()+" " +agent.getAddress()+" "+agent.getEmail()+" "+
     		  agent.getLogin()+" "+agent.getMdp()+" "+" "+agent.getNumTel()+" "+agent.getPrenom());
@@ -363,7 +357,7 @@ public ResponseEntity<Admin> rechercheAdminParNom(@PathVariable("nom") String n)
   
 //------------------- Create Admin --------------------
 
-@RequestMapping(value = "/admin/id/", method = RequestMethod.POST)
+@RequestMapping(value = "/admin/", method = RequestMethod.POST)
 public ResponseEntity<Void> createAdmin(@RequestBody Admin admin,    UriComponentsBuilder ucBuilder) {
     System.out.println("Creating Admin "+admin.getId()+" " + admin.getUsername()+" " +admin.getAddress()+" "+admin.getEmail()+" "+
     		admin.getLogin()+" "+admin.getMdp()+" "+" "+admin.getNumTel()+" "+admin.getPrenom());
