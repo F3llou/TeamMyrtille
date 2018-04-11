@@ -54,7 +54,7 @@ public class RestControllerCompte {
      
     @RequestMapping(value = "/compte/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Compte> getCompte(@PathVariable("id") int id) {
-        System.out.println("Fetching User with id " + id);
+        System.out.println("Fetching Compte with id " + id);
         Compte compte = compteService.findCompteById(id);
         if (compte == null) {
             System.out.println("Compte with id " + id + " not found");

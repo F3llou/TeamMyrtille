@@ -14,7 +14,7 @@ import com.wha.springmvc.model.Compte;
 @Repository("compteDao")
 public class CompteDaoImpl extends AbstractDao<Integer, Compte> implements CompteDao {
 
-	public Compte findById(int id){
+	public Compte findCompteById(int id){
 		Compte compte = getByKey(id);
 		return compte;
 	}

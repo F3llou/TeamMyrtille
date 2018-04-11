@@ -7,7 +7,7 @@ import com.wha.springmvc.model.Compte;
 
 public interface CompteDao {
 
-	Compte findById(int id);
+	Compte findCompteById(int id);
 	void save(Compte compte);
 	void deleteCompteById(int id);
 	List<Compte> findAllComptes();

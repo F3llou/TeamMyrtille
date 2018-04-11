@@ -36,13 +36,13 @@ public class CompteServiceImpl implements CompteService{
 	
 	public Compte findCompteById(long id) {
 	
-		return compteDao.findById((int)id);
+		return compteDao.findCompteById((int)id);
 	}
 	
 	
 	public void updateCompte(Compte compte) {
 
-		Compte entity = compteDao.findById((int)compte.getId());
+		Compte entity = compteDao.findCompteById((int)compte.getId());
 		if(entity!=null){
 			entity.setSolde(compte.getSolde());
 		}
@@ -80,8 +80,9 @@ public class CompteServiceImpl implements CompteService{
 	}
 	@Override
 	public Compte findCompteById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return compteDao.findCompteById((int)id);
+		
 	}
 	
 //partie compteAvecdecouv
