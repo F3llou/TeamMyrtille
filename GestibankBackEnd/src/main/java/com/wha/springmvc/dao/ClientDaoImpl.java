@@ -77,11 +77,13 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
 	 * Recherche de tous les clients
 	 * 
 	 * @return clients Retourne une liste de tous les clients
+	 *
+	 *WHERE u.TYPE_ENTITE = 'CL'
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Client> findAllClients() {
-		List<Client> clients = getEntityManager().createQuery("SELECT u FROM User u WHERE u.TYPE_ENTITE = 'CL' ORDER BY u.username ASC").getResultList();
+		List<Client> clients = getEntityManager().createQuery("SELECT u FROM Client u ORDER BY u.username ASC").getResultList();
 		return clients;
 	}
 

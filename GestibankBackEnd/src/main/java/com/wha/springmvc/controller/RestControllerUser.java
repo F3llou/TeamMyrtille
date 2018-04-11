@@ -18,8 +18,6 @@ import com.wha.springmvc.model.Agent;
 import com.wha.springmvc.model.Admin;
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.User;
-import com.wha.springmvc.service.CompteService;
-import com.wha.springmvc.service.OperationService;
 import com.wha.springmvc.service.UserService;
  
 @RestController
