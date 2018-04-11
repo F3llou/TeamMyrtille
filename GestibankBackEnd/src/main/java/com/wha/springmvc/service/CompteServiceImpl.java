@@ -23,7 +23,7 @@ import com.wha.springmvc.model.CompteSansDecouv;
 public class CompteServiceImpl implements CompteService{
 	
 	@Autowired
-	private CompteDao comdao;
+	private CompteDao compteDao;
 
 	@Autowired
 	private CompteAvecDecouvertDao decdao;
@@ -36,22 +36,22 @@ public class CompteServiceImpl implements CompteService{
 	
 	public Compte findCompteById(long id) {
 	
-		return comdao.findById((int)id);
+		return compteDao.findById((int)id);
 	}
 	
 	
 	public void updateCompte(Compte compte) {
 
-		Compte entity = comdao.findById((int)compte.getId());
+		Compte entity = compteDao.findById((int)compte.getId());
 		if(entity!=null){
 			entity.setSolde(compte.getSolde());
 		}
-		comdao.save(entity);
+		compteDao.save(entity);
 	}
 
 	public void deleteCompteById(int id) {
 
-		comdao.deleteCompteById(id);
+		compteDao.deleteCompteById(id);
 	}
 
 	
@@ -63,13 +63,14 @@ public class CompteServiceImpl implements CompteService{
 	@Override
 	public void saveCompte(Compte compte) {
 		// TODO Auto-generated method stub
+		compteDao.save(compte);
 		
 	}
 
 	@Override
 	public List<Compte> findAllComptes() {
 		// TODO Auto-generated method stub
-		return comdao.findAllComptes();
+		return compteDao.findAllComptes();
 	}
 
 	@Override

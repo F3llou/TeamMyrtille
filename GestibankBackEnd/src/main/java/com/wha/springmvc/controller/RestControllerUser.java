@@ -183,7 +183,31 @@ public class RestControllerUser {
     }
 
 
-
+  //------------------- Update a Client --------------------------------------------------------
+    
+    @RequestMapping(value = "/client/id/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Client> updateClient(@PathVariable("id") long id, @RequestBody Client client) {
+        System.out.println("Updating Client " + id);
+         
+        Client currentClient = userService.findClientById((int) id);
+         
+        if (currentClient==null) {
+            System.out.println("Client with id " + id + " not found");
+            return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
+        }
+ 
+        currentClient.setUsername(client.getUsername());
+        currentClient.setAddress(client.getAddress());
+        currentClient.setEmail(client.getEmail());
+        currentClient.setLogin(client.getLogin());
+        currentClient.setPrenom(client.getPrenom());		
+        currentClient.setNumTel(client.getNumTel());
+        currentClient.setDateDeb(client.getDateDeb());
+        currentClient.setMdp(client.getMdp());
+         
+        userService.updateClient(currentClient);
+        return new ResponseEntity<Client>(currentClient, HttpStatus.OK);
+    }
 
 //-------------------Retrieve All Client--------------------------------------------------------
 
@@ -199,7 +223,7 @@ public ResponseEntity<List<Client>> listAllClients() {
 
 //------------------- Delete a Client --------------------------------------------------------
 
-@RequestMapping(value = "/client/{id}", method = RequestMethod.DELETE)
+@RequestMapping(value = "/client/id/{id}", method = RequestMethod.DELETE)
 public ResponseEntity<Client> deleteClient(@PathVariable("id") int id) {
     System.out.println("Fetching & Deleting Client with id " + id);
 
@@ -215,7 +239,7 @@ public ResponseEntity<Client> deleteClient(@PathVariable("id") int id) {
 
  
 
-//------------------- Delete All Users --------------------------------------------------------
+//------------------- Delete All Clients --------------------------------------------------------
  
 @RequestMapping(value = "/client/", method = RequestMethod.DELETE)
 public ResponseEntity<Client> deleteAllClients() {
@@ -286,7 +310,7 @@ public ResponseEntity<List<Agent>> listAllAgents() {
 
 //------------------- Delete a Agent --------------------------------------------------------
 
-@RequestMapping(value = "/agent/{id}", method = RequestMethod.DELETE)
+@RequestMapping(value = "/agent/id/{id}", method = RequestMethod.DELETE)
 public ResponseEntity<Agent> deleteAgent(@PathVariable("id") int id) {
   System.out.println("Fetching & Deleting Agent with id " + id);
 
@@ -362,7 +386,7 @@ public ResponseEntity<Void> createAdmin(@RequestBody Admin admin,    UriComponen
 
 //------------------- Delete a Admin --------------------------------------------------------
 
-@RequestMapping(value = "/admin/{id}", method = RequestMethod.DELETE)
+@RequestMapping(value = "/admin/id/{id}", method = RequestMethod.DELETE)
 public ResponseEntity<Admin> deleteAdmin(@PathVariable("id") int id) {
 System.out.println("Fetching & Deleting Admin with id " + id);
 

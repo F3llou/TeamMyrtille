@@ -113,6 +113,22 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		cdao.save(client);
 	}
+	
+	@Override
+	public void updateClient(Client client) {
+		Client entity = cdao.findClientById((int)client.getId());
+		if(entity!=null){
+			entity.setLogin(client.getLogin());
+			entity.setMdp(client.getMdp());
+			entity.setPrenom(client.getPrenom());
+			entity.setUsername(client.getUsername());
+			entity.setAddress(client.getAddress());
+			entity.setEmail(client.getEmail());
+			entity.setNumTel(client.getNumTel());
+		}
+		cdao.save(entity);
+	}
+	
 	public List<Client> findAllClients() {
 		//return users;
 		return cdao.findAllClients();
@@ -175,6 +191,8 @@ public class UserServiceImpl implements UserService{
 	public void deleteAdminById(int id) {
 		addao.deleteAdminById((int)id);
 	}
+
+
 
 	
 	

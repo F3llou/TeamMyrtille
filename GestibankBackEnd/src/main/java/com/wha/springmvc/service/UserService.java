@@ -31,6 +31,7 @@ public interface UserService {
 	Client findClientById(int id);
 	Client findClientByName(String name);
 	void saveClient(Client client);
+	void updateClient(Client client);
 	 List<Client> findAllClients();
 	 void deleteClientById(int id);
 	 void deleteAllClients();

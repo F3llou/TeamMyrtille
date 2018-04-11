@@ -72,7 +72,7 @@ public class RestControllerCompte {
         System.out.println("Creating Compte " + compte.getId()+compte.getSolde()+compte.getDateDeb());
  
         if (compteService.isUserExist(compte)) {
-            System.out.println("A Compte with name " +compte.getId()+compte.getSolde()+compte.getDateDeb()+  " already exist");
+            System.out.println("A Compte " +compte.getId()+compte.getSolde()+compte.getDateDeb()+  " already exist");
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
  
