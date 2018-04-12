@@ -43,7 +43,7 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
 		// TODO Auto-generated method stub
 		System.out.println("name : "+name);
 		try {
-			Client client=(Client) getEntityManager().createQuery("SELECT c FROM Client c WHERE c.username LIKE :name").setParameter("name",  name).getSingleResult();
+			Client client=(Client) getEntityManager().createQuery("SELECT c FROM Client c WHERE c.nom LIKE :name").setParameter("name",  name).getSingleResult();
 			return client;
 		}catch (NoResultException ex) {
 		return null;
@@ -83,7 +83,7 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Client> findAllClients() {
-		List<Client> clients = getEntityManager().createQuery("SELECT u FROM Client u ORDER BY u.username ASC").getResultList();
+		List<Client> clients = getEntityManager().createQuery("SELECT u FROM Client u ORDER BY u.nom ASC").getResultList();
 		return clients;
 	}
 

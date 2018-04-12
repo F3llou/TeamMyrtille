@@ -19,7 +19,6 @@ public class Retrait extends Operation{
 	}
 	
 	public Retrait(int id, Date dateOperation, double montant){
-		
 		super(id, dateOperation, montant);
 	}
 

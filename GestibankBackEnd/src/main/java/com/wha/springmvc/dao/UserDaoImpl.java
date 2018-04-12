@@ -39,7 +39,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<User> findAllUsers(){
-	List<User> users = getEntityManager().createQuery("SELECT u FROM User u ORDER BY u.username ASC").getResultList();
+	List<User> users = getEntityManager().createQuery("SELECT u FROM User u ORDER BY u.nom ASC").getResultList();
 	return users;
 	}
 	
@@ -82,7 +82,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	public User findByName(String name){
 		System.out.println("name : "+name);
 		try{
-			User user = (User) getEntityManager().createQuery("SELECT u FROM User u WHERE u.username LIKE :name").setParameter("name",  name).getSingleResult();
+			User user = (User) getEntityManager().createQuery("SELECT u FROM User u WHERE u.nom LIKE :name").setParameter("name",  name).getSingleResult();
 			return user;
 		}catch (NoResultException ex){
 			return null;

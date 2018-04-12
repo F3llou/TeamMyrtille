@@ -24,7 +24,7 @@ public class Client extends User{
 	private String situationMaritale;
 	
 	@JsonIgnore
-	@OneToMany(fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Compte> listComptes;
 	
 	public Client() {

@@ -29,7 +29,7 @@ public class Admin extends User {
 	@Override
 	public String toString() {
 		return "Admin [getId()=" + getId() + ", getLogin()=" + getLogin() + ", getMdp()=" + getMdp() + ", getPrenom()="
-				+ getPrenom() + ", getUsername()=" + getUsername() + ", getAddress()=" + getAddress() + ", getEmail()="
+				+ getPrenom() + ", getUsername()=" + getNom() + ", getAddress()=" + getAddress() + ", getEmail()="
 				+ getEmail() + ", getNumTel()=" + getNumTel() + ", getListUsers()=" + getListUsers()
 				+ ", getListDemandes()=" + getListDemandes() + ", getDateDeb()=" + getDateDeb() + ", toString()="
 				+ super.toString() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass() + "]";

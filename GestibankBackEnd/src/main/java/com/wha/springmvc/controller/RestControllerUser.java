@@ -59,10 +59,10 @@ public class RestControllerUser {
      
     @RequestMapping(value = "/user/", method = RequestMethod.POST)
     public ResponseEntity<Void> createUser(@RequestBody User user,    UriComponentsBuilder ucBuilder) {
-        System.out.println("Creating User " + user.getUsername());
+        System.out.println("Creating User " + user.getNom());
  
         if (userService.isUserExist(user)) {
-            System.out.println("A User with name " + user.getUsername() + " already exist");
+            System.out.println("A User with name " + user.getNom() + " already exist");
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
  
@@ -88,7 +88,7 @@ public class RestControllerUser {
             return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
         }
  
-        currentUser.setUsername(user.getUsername());
+        currentUser.setNom(user.getNom());
         currentUser.setAddress(user.getAddress());
         currentUser.setEmail(user.getEmail());
         currentUser.setLogin(user.getLogin());
@@ -104,7 +104,7 @@ public class RestControllerUser {
     //------------------- Verification login of a User --------------------------------------------------------
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> verifUser(@RequestBody User user) {
-        System.out.println("Verifying User " + user.getUsername());
+        System.out.println("Verifying User " + user.getNom());
  
         User userResult = userService.verifLogin(user);
 
@@ -172,11 +172,11 @@ public class RestControllerUser {
     
     @RequestMapping(value = "/client/", method = RequestMethod.POST)
     public ResponseEntity<Void> createClient(@RequestBody Client client,    UriComponentsBuilder ucBuilder) {
-        System.out.println("Creating Client "+client.getId()+" " + client.getUsername()+" " +client.getAddress()+" "+client.getEmail()+" "+
+        System.out.println("Creating Client "+client.getId()+" " + client.getNom()+" " +client.getAddress()+" "+client.getEmail()+" "+
         		client.getLogin()+" "+client.getMdp()+" "+client.getNbEnfant()+" "+client.getNumTel()+" "+client.getPrenom()+" "+client.getSituationMaritale() + " "+client.getDateDeb());
  
         if (userService.isUserExist(client)) {
-            System.out.println("A Client with name " + client.getUsername() + " already exist");
+            System.out.println("A Client with name " + client.getNom() + " already exist");
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
  
@@ -201,7 +201,7 @@ public class RestControllerUser {
             return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
         }
  
-        currentClient.setUsername(client.getUsername());
+        currentClient.setNom(client.getNom());
         currentClient.setAddress(client.getAddress());
         currentClient.setEmail(client.getEmail());
         currentClient.setLogin(client.getLogin());
@@ -283,11 +283,11 @@ public ResponseEntity<Client> deleteAllClients() {
   
   @RequestMapping(value = "/agent/", method = RequestMethod.POST)
   public ResponseEntity<Void> createAgent(@RequestBody Agent agent,    UriComponentsBuilder ucBuilder) {
-      System.out.println("Creating Agent "+agent.getId()+" " + agent.getUsername()+" " +agent.getAddress()+" "+agent.getEmail()+" "+
+      System.out.println("Creating Agent "+agent.getId()+" " + agent.getNom()+" " +agent.getAddress()+" "+agent.getEmail()+" "+
     		  agent.getLogin()+" "+agent.getMdp()+" "+" "+agent.getNumTel()+" "+agent.getPrenom());
 
       if (userService.isUserExist(agent)) {
-          System.out.println("A Agent with name " + agent.getUsername() + " already exist");
+          System.out.println("A Agent with name " + agent.getNom() + " already exist");
           return new ResponseEntity<Void>(HttpStatus.CONFLICT);
       }
 
@@ -370,11 +370,11 @@ public ResponseEntity<Admin> rechercheAdminParNom(@PathVariable("nom") String n)
 
 @RequestMapping(value = "/admin/", method = RequestMethod.POST)
 public ResponseEntity<Void> createAdmin(@RequestBody Admin admin,    UriComponentsBuilder ucBuilder) {
-    System.out.println("Creating Admin "+admin.getId()+" " + admin.getUsername()+" " +admin.getAddress()+" "+admin.getEmail()+" "+
+    System.out.println("Creating Admin "+admin.getId()+" " + admin.getNom()+" " +admin.getAddress()+" "+admin.getEmail()+" "+
     		admin.getLogin()+" "+admin.getMdp()+" "+" "+admin.getNumTel()+" "+admin.getPrenom());
 
     if (userService.isUserExist(admin)) {
-        System.out.println("A Admin with name " + admin.getUsername() + " already exist");
+        System.out.println("A Admin with name " + admin.getNom() + " already exist");
         return new ResponseEntity<Void>(HttpStatus.CONFLICT);
     }
 

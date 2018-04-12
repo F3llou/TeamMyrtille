@@ -19,6 +19,7 @@ import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.CompteAvecDecouv;
 import com.wha.springmvc.model.CompteRemun;
 import com.wha.springmvc.model.CompteSansDecouv;
+import com.wha.springmvc.model.Depot;
 import com.wha.springmvc.model.Retrait;
 import com.wha.springmvc.service.CompteService;
 import com.wha.springmvc.service.OperationService;
@@ -191,7 +192,23 @@ public class RestControllerCompte {
        return new ResponseEntity<CompteSansDecouv>(compteSD, HttpStatus.OK);
     }
     
-	
+	  //-------------------depot CompteSansDecouv--------------------------------------------------------
+
+		@RequestMapping(value = "/comptesansdecouv/{id}/depot/", method = RequestMethod.POST)
+	    public ResponseEntity<CompteSansDecouv> depotCompteSansDecouv(@PathVariable("id") int id, @RequestBody Depot depot, UriComponentsBuilder ucBuilder) {
+			
+	       CompteSansDecouv compteSD = compteService.depotCompteSansDecouv(depot.getMontant(), id);
+	       
+	       return new ResponseEntity<CompteSansDecouv>(compteSD, HttpStatus.OK);
+	    }
+    
+    
+    
+    
+    
+    
+    
+ 
      
      
     //-------------------Create a CompteSansDecouv--------------------------------------------------------

@@ -106,7 +106,7 @@ public class CompteServiceImpl implements CompteService{
 			return sdedao.findById(id);
 		}
 
-		//------------------------------------------------------------------------------	
+		//--------------------------------------retrait Compte Sans Decouvert----------------------------------------	
 		@Override
 		public CompteSansDecouv retraitCompteSansDecouv(double montant, int id) {
 			CompteSansDecouv compteSD = findCompteSansDecouvById(id);
@@ -120,6 +120,17 @@ public class CompteServiceImpl implements CompteService{
 			return compteSD;
 		}	
 		
+		//--------------------------------------depot Compte Sans Decouvert----------------------------------------	
+		@Override
+		public CompteSansDecouv depotCompteSansDecouv(double montant, int id) {
+			CompteSansDecouv compteSD = findCompteSansDecouvById(id);
+			System.out.println("Depot CompteSansDecouv " + compteSD.getId()+compteSD.getSolde()+compteSD.getDateDeb());
+			double resultat = operationService.depotEffect(montant, compteSD);
+		 
+			compteSD.setSolde(resultat);
+			saveCompteSansDecouv(compteSD);
+			return compteSD;
+		}	
 		
 		
 		

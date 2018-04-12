@@ -69,6 +69,23 @@ public class OperationServiceImpl implements OperationService{
 	}
 	
 //------------------------------------------------------------------------	
+	//------------------------------------------------------------------------	
+		//depot effectué 
+		
+		@Override
+		public double depotEffect (double montant, Compte compte) {
+			Depot depot = new Depot();
+			depot.setMontant(montant);
+			Calendar c = Calendar.getInstance ();
+			depot.setDateOperation(c.getTime());
+			return (double) (compte.getSolde() + depot.getMontant());
+		}
+		
+	//------------------------------------------------------------------------	
+	
+	
+	
+	
 	@Override
 	public boolean isUserExist(Operation operation) {
 		// TODO Auto-generated method stub

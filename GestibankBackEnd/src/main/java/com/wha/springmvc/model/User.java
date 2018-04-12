@@ -35,7 +35,7 @@ public class User {
 	private int id;
 	private String login;
 	private String mdp;
-	private String username;
+	private String nom;
 	private String prenom;
 	private String address;
 	private String email;
@@ -58,7 +58,7 @@ public class User {
 		this.id = id;
 		this.login=login;
 		this.mdp=mdp;
-		this.username = username;
+		this.nom = username;
 		this.prenom=prenom;
 		this.address = address;
 		this.email = email;
@@ -99,12 +99,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getNom() {
+		return nom;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setNom(String username) {
+		this.nom = username;
 	}
 
 	public String getAddress() {
@@ -158,7 +158,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [getId()=" + getId() + ", getLogin()=" + getLogin() + ", getMdp()=" + getMdp() + ", getPrenom()="
-				+ getPrenom() + ", getUsername()=" + getUsername() + ", getAddress()=" + getAddress() + ", getEmail()="
+				+ getPrenom() + ", getUsername()=" + getNom() + ", getAddress()=" + getAddress() + ", getEmail()="
 				+ getEmail() + ", getNumTel()=" + getNumTel() + ", getListUsers()=" + getListUsers()
 				+ ", getListDemandes()=" + getListDemandes() + ", getDateDeb()=" + getDateDeb() + "]";
 	}
@@ -177,7 +177,7 @@ public class User {
 		result = prime * result + ((mdp == null) ? 0 : mdp.hashCode());
 		result = prime * result + ((numTel == null) ? 0 : numTel.hashCode());
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		return result;
 	}
 
@@ -237,10 +237,10 @@ public class User {
 				return false;
 		} else if (!prenom.equals(other.prenom))
 			return false;
-		if (username == null) {
-			if (other.username != null)
+		if (nom == null) {
+			if (other.nom != null)
 				return false;
-		} else if (!username.equals(other.username))
+		} else if (!nom.equals(other.nom))
 			return false;
 		return true;
 	}

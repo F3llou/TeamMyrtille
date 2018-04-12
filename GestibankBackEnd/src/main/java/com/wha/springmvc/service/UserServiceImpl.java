@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService{
 			entity.setLogin(user.getLogin());
 			entity.setMdp(user.getMdp());
 			entity.setPrenom(user.getPrenom());
-			entity.setUsername(user.getUsername());
+			entity.setNom(user.getNom());
 			entity.setAddress(user.getAddress());
 			entity.setEmail(user.getEmail());
 			entity.setNumTel(user.getNumTel());
@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	public boolean isUserExist(User user) {
-		return findByName(user.getUsername())!=null;
+		return findByName(user.getNom())!=null;
 	}
 	
 	public void deleteAllUsers(){
@@ -134,7 +134,7 @@ public class UserServiceImpl implements UserService{
 			entity.setLogin(client.getLogin());
 			entity.setMdp(client.getMdp());
 			entity.setPrenom(client.getPrenom());
-			entity.setUsername(client.getUsername());
+			entity.setNom(client.getNom());
 			entity.setAddress(client.getAddress());
 			entity.setEmail(client.getEmail());
 			entity.setNumTel(client.getNumTel());
