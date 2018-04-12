@@ -15,14 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-
-
-
-
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.CompteAvecDecouv;
 import com.wha.springmvc.model.CompteRemun;
 import com.wha.springmvc.model.CompteSansDecouv;
+import com.wha.springmvc.model.Retrait;
 import com.wha.springmvc.service.CompteService;
 import com.wha.springmvc.service.OperationService;
 
@@ -98,7 +95,7 @@ public class RestControllerCompte {
             return new ResponseEntity<Compte>(HttpStatus.NOT_FOUND);
         }
  
-        currentCompte.setId(compte.getId());
+        //currentCompte.setId(compte.getId());
         currentCompte.setSolde(compte.getSolde());
         currentCompte.setDateDeb(compte.getDateDeb());
         
@@ -182,7 +179,19 @@ public class RestControllerCompte {
         }
         return new ResponseEntity<CompteSansDecouv>(compteSansDecouv, HttpStatus.OK);
     }
- 
+    
+    
+    //-------------------retrait CompteSansDecouv--------------------------------------------------------
+
+	@RequestMapping(value = "/comptesansdecouv/{id}/retrait/", method = RequestMethod.POST)
+    public ResponseEntity<CompteSansDecouv> retraitCompteSansDecouv(@PathVariable("id") int id, @RequestBody Retrait retrait, UriComponentsBuilder ucBuilder) {
+		
+       CompteSansDecouv compteSD = compteService.retraitCompteSansDecouv(retrait.getMontant(), id);
+       
+       return new ResponseEntity<CompteSansDecouv>(compteSD, HttpStatus.OK);
+    }
+    
+	
      
      
     //-------------------Create a CompteSansDecouv--------------------------------------------------------

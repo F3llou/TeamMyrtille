@@ -15,7 +15,7 @@ import com.wha.springmvc.model.CompteAvecDecouv;
 @Repository("compteAvecdecouvertDao")
 public class CompteAvecDecouvertDaoImpl extends AbstractDao<Integer, CompteAvecDecouv> implements CompteAvecDecouvertDao {
 
-	public CompteAvecDecouv findById(int id){
+	public CompteAvecDecouv findCompteAvecDecouvById(int id){
 		CompteAvecDecouv compteAvecDecouv = getByKey(id);
 		return compteAvecDecouv;
 	}

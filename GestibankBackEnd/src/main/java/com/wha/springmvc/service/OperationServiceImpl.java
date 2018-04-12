@@ -1,5 +1,6 @@
 package com.wha.springmvc.service;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.wha.springmvc.dao.DepotDao;
 import com.wha.springmvc.dao.OperationDao;
 import com.wha.springmvc.dao.RetraitDao;
+import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Depot;
 import com.wha.springmvc.model.Operation;
 import com.wha.springmvc.model.Retrait;
@@ -53,7 +55,20 @@ public class OperationServiceImpl implements OperationService{
 		// TODO Auto-generated method stub
 		return operdao.findAllOperations();
 	}
-
+	
+//------------------------------------------------------------------------	
+	//retrait effectué 
+	
+	@Override
+	public double retraitEffect (double montant, Compte compte) {
+		Retrait retrait = new Retrait();
+		retrait.setMontant(montant);
+		Calendar c = Calendar.getInstance ();
+		retrait.setDateOperation(c.getTime());
+		return (double) (compte.getSolde() - retrait.getMontant());
+	}
+	
+//------------------------------------------------------------------------	
 	@Override
 	public boolean isUserExist(Operation operation) {
 		// TODO Auto-generated method stub

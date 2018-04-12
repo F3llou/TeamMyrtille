@@ -17,10 +17,12 @@ import com.wha.springmvc.model.CompteRemun;
 import com.wha.springmvc.model.CompteSansDecouv;
 
 
-
 @Service("compteService")
 @Transactional
 public class CompteServiceImpl implements CompteService{
+	
+    @Autowired
+    private OperationService operationService;
 	
 	@Autowired
 	private CompteDao compteDao;
@@ -89,7 +91,7 @@ public class CompteServiceImpl implements CompteService{
 	@Override
 	public CompteAvecDecouv findCompteAvecDecouvById(int id) {
 		
-		return decdao.findById(id);
+		return decdao.findCompteAvecDecouvById((int) id);
 	}
 
 	@Override
@@ -104,6 +106,26 @@ public class CompteServiceImpl implements CompteService{
 			return sdedao.findById(id);
 		}
 
+		//------------------------------------------------------------------------------	
+		@Override
+		public CompteSansDecouv retraitCompteSansDecouv(double montant, int id) {
+			CompteSansDecouv compteSD = findCompteSansDecouvById(id);
+			System.out.println("Retrait CompteSansDecouv " + compteSD.getId()+compteSD.getSolde()+compteSD.getDateDeb());
+			double resultat = operationService.retraitEffect(montant, compteSD);
+		 
+			if (resultat >=0) {
+				compteSD.setSolde(resultat);
+				saveCompteSansDecouv(compteSD);
+			}
+			return compteSD;
+		}	
+		
+		
+		
+		
+		
+		//------------------------------------------------------------------------------	
+		
 		@Override
 		public void saveCompteSansDecouv(CompteSansDecouv compteSansDecouv) {
 			

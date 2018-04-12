@@ -9,7 +9,10 @@ import com.wha.springmvc.model.CompteSansDecouv;
 
 public interface CompteService {
 	
-	Compte findCompteById(int id);	
+	Compte findCompteById(int id);
+	
+	
+	
 	void saveCompte(Compte compte);
 	
 	void updateCompte(Compte compte);
@@ -28,6 +31,7 @@ public interface CompteService {
 	
 	//les methodes de traitement des compteSansDecouv
 	CompteSansDecouv findCompteSansDecouvById(int id);
+	CompteSansDecouv retraitCompteSansDecouv(double montant, int id);
 	void saveCompteSansDecouv(CompteSansDecouv compteSansDecouv);
 	
 	//les methodes de traitement des CompteRemun

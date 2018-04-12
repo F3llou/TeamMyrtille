@@ -7,7 +7,7 @@ import com.wha.springmvc.model.CompteAvecDecouv;
 
 public interface CompteAvecDecouvertDao {
 
-	CompteAvecDecouv findById(int id);
+	CompteAvecDecouv findCompteAvecDecouvById(int id);
 	void save(CompteAvecDecouv compteAvecDecouvert);
 	void deleteCompteById(int id);
 	List<CompteAvecDecouv> findAllComptes();
