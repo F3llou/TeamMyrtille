@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService{
 		boolean verif2 = false;
 		User userResult = new User();
 		for (User userTest : dao.findAllUsers()) {
-			if(user.getUsername().equals(userTest.getUsername())) {
+			if(user.getLogin().equals(userTest.getLogin())) {
 				verif1 = true;
 				userResult = userTest;
 			}
