@@ -7,8 +7,6 @@ import com.wha.springmvc.model.Agent;
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.User;
 
-
-
 public interface UserService {
 	
 	User findById(long id);
@@ -18,6 +16,8 @@ public interface UserService {
 	void saveUser(User user);
 	
 	void updateUser(User user);
+	
+	User verifLogin(User user);
 	
 	void deleteUserById(long id);
 

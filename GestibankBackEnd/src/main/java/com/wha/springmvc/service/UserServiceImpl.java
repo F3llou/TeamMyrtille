@@ -1,14 +1,6 @@
 package com.wha.springmvc.service;
 
-import java.sql.SQLException;
-//import java.util.ArrayList;
-//import java.util.Iterator;
 import java.util.List;
-//import java.util.concurrent.atomic.AtomicLong;
-
-
-
-
 
 import javax.transaction.Transactional;
 
@@ -92,6 +84,27 @@ public class UserServiceImpl implements UserService{
 		dao.deleteUserById((int)id);
 	}
 
+	public User verifLogin(User user) {
+		boolean verif1 = false;
+		boolean verif2 = false;
+		User userResult = new User();
+		for (User userTest : dao.findAllUsers()) {
+			if(user.getUsername().equals(userTest.getUsername())) {
+				verif1 = true;
+				userResult = userTest;
+			}
+			if(user.getMdp().equals(userTest.getMdp())) {
+				verif2 = true;
+			}
+		}
+		
+		if(verif1==true && verif2==true) {
+			return userResult;
+		}else {
+			return null;
+		}
+	}
+	
 	public boolean isUserExist(User user) {
 		return findByName(user.getUsername())!=null;
 	}

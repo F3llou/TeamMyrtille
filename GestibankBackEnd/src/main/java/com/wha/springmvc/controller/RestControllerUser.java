@@ -101,7 +101,20 @@ public class RestControllerUser {
         return new ResponseEntity<User>(currentUser, HttpStatus.OK);
     }
  
-    
+    //------------------- Verification login of a User --------------------------------------------------------
+    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> verifUser(@RequestBody User user) {
+        System.out.println("Verifying User " + user.getUsername());
+ 
+        User userResult = userService.verifLogin(user);
+
+        if (userResult == null) {
+            System.out.println("User not found");
+            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+        }else {
+        	return new ResponseEntity<User>(userResult, HttpStatus.OK);
+        }
+    }
     
     //------------------- Delete a User --------------------------------------------------------
      
