@@ -51,7 +51,7 @@ public interface ClientDao {
 	 * @return clients Retourne une liste de tous les clients
 	 */
 	List<Client> findAllClients();
-	
+
 	/**
 	 * Efface tous les clients
 	 * (pas de méthode pour le moment)

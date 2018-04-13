@@ -15,14 +15,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.CompteAvecDecouv;
 import com.wha.springmvc.model.CompteRemun;
 import com.wha.springmvc.model.CompteSansDecouv;
 import com.wha.springmvc.model.Depot;
 import com.wha.springmvc.model.Retrait;
+import com.wha.springmvc.model.Virement;
 import com.wha.springmvc.service.CompteService;
 import com.wha.springmvc.service.OperationService;
+import com.wha.springmvc.service.UserService;
 
  
 @RestController
@@ -32,7 +35,10 @@ public class RestControllerCompte {
     CompteService compteService; 
     
     @Autowired
-    OperationService operationService; 
+    OperationService operationService;
+    
+    @Autowired
+    UserService userService;
     
     //-------------------Retrieve All Comptes--------------------------------------------------------
      
@@ -65,16 +71,16 @@ public class RestControllerCompte {
      
     //-------------------Create a Compte--------------------------------------------------------
      
-    @RequestMapping(value = "/compte/", method = RequestMethod.POST)
-    public ResponseEntity<Void> createCompte(@RequestBody Compte compte,    UriComponentsBuilder ucBuilder) {
+    @RequestMapping(value = "/client/{id}/compte/", method = RequestMethod.POST)
+    public ResponseEntity<Void> createCompte(@PathVariable("id") int id, @RequestBody Compte compte, UriComponentsBuilder ucBuilder) {
         System.out.println("Creating Compte " + compte.getId()+compte.getSolde()+compte.getDateDeb());
  
         if (compteService.isUserExist(compte)) {
             System.out.println("A Compte " +compte.getId()+compte.getSolde()+compte.getDateDeb()+  " already exist");
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
- 
-        compteService.saveCompte(compte);
+        
+        compteService.createCompteClient(id, compte);
  
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/compte/{id}").buildAndExpand(compte.getId()).toUri());
@@ -147,8 +153,6 @@ public class RestControllerCompte {
         }
         return new ResponseEntity<CompteAvecDecouv>(compteAvecDecouv, HttpStatus.OK);
     }
- 
-     
      
     //-------------------Create a CompteAvecDecouv--------------------------------------------------------
      
@@ -201,15 +205,16 @@ public class RestControllerCompte {
 	       
 	       return new ResponseEntity<CompteSansDecouv>(compteSD, HttpStatus.OK);
 	    }
-    
-    
-    
-    
-    
-    
-    
- 
-     
+		
+	    //-------------------Virement CompteSansDecouv--------------------------------------------------------
+
+		@RequestMapping(value = "/comptesansdecouv/{id}/virement/", method = RequestMethod.POST)
+	    public ResponseEntity<CompteSansDecouv> virementCompteSansDecouv(@PathVariable("id") int id, @RequestBody Virement virement, UriComponentsBuilder ucBuilder) {
+			
+	       CompteSansDecouv compteSD = compteService.virementCompteSansDecouv(virement.getMontant(), id, virement.getRibArrivee());
+	       
+	       return new ResponseEntity<CompteSansDecouv>(compteSD, HttpStatus.OK);
+	    }
      
     //-------------------Create a CompteSansDecouv--------------------------------------------------------
     @RequestMapping(value = "/compteSansDecouv/", method = RequestMethod.POST)

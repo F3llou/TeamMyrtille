@@ -13,6 +13,8 @@ public interface CompteService {
 
 	void saveCompte(Compte compte);
 	
+	void createCompteClient(int id, Compte compte);
+	
 	void updateCompte(Compte compte);
 	
 	void deleteCompteById(int id);
@@ -31,6 +33,7 @@ public interface CompteService {
 	CompteSansDecouv findCompteSansDecouvById(int id);
 	CompteSansDecouv retraitCompteSansDecouv(double montant, int id);
 	CompteSansDecouv depotCompteSansDecouv(double depot, int id);
+	CompteSansDecouv virementCompteSansDecouv(double montant, int id, int idrecev);
 	void saveCompteSansDecouv(CompteSansDecouv compteSansDecouv);
 	
 	//les methodes de traitement des CompteRemun

@@ -3,6 +3,7 @@ package com.wha.springmvc.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -38,7 +39,7 @@ public class Compte {
 	private Date dateDeb;
 	
 	@JsonIgnore
-	@OneToMany(fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Operation> listOperations;
 	
 	public Compte(){

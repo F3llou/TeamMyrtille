@@ -15,6 +15,7 @@ import com.wha.springmvc.model.Admin;
 import com.wha.springmvc.model.Agent;
 import com.wha.springmvc.model.Auth;
 import com.wha.springmvc.model.Client;
+import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.User;
 
 @Service("userService")
@@ -67,6 +68,11 @@ public class UserServiceImpl implements UserService{
 		dao.save(user);
 	}
 
+	public void saveCompteClient(Client client, Compte compte) {
+		client.getListComptes().add(compte);
+		cdao.save(client);
+	}
+	
 	public void updateUser(User user) {
 		User entity = dao.findById((int)user.getId());
 		if(entity!=null){
@@ -85,8 +91,6 @@ public class UserServiceImpl implements UserService{
 		dao.deleteUserById((int)id);
 	}
 
-	
-	
 	public User verifLogin(Auth auth) {
 		return dao.checkLogin(auth.getUsername(), auth.getPwd());
 	}

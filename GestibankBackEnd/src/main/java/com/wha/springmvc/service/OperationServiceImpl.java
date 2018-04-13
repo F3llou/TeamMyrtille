@@ -60,37 +60,45 @@ public class OperationServiceImpl implements OperationService{
 	//retrait effectué 
 	
 	@Override
-	public double retraitEffect (double montant, Compte compte) {
+	public Retrait retraitEffect (double montant) {
 		Retrait retrait = new Retrait();
-		retrait.setMontant(montant);
+		retrait.setMontant(-montant);
 		Calendar c = Calendar.getInstance ();
 		retrait.setDateOperation(c.getTime());
-		return (double) (compte.getSolde() - retrait.getMontant());
+		return retrait;
 	}
 	
-//------------------------------------------------------------------------	
 	//------------------------------------------------------------------------	
 		//depot effectué 
 		
 		@Override
-		public double depotEffect (double montant, Compte compte) {
+		public Depot depotEffect (double montant) {
 			Depot depot = new Depot();
 			depot.setMontant(montant);
 			Calendar c = Calendar.getInstance ();
 			depot.setDateOperation(c.getTime());
-			return (double) (compte.getSolde() + depot.getMontant());
+			return depot;
 		}
 		
 	//------------------------------------------------------------------------	
-	
-	
-	
-	
+		//Virement initialisation 
+		
+		@Override
+		public Virement virementInit(Virement virement, Operation operation, int ribArrivee) {
+			virement.setMontant(operation.getMontant());
+			virement.setDateOperation(operation.getDateOperation());
+			virement.setId(operation.getId());
+			virement.setRibArrivee(ribArrivee);
+			return virement;
+		}
+		
+	//------------------------------------------------------------------------	
 	@Override
 	public boolean isUserExist(Operation operation) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
 	@Override
 	public Operation findById(int id) {
 		// TODO Auto-generated method stub

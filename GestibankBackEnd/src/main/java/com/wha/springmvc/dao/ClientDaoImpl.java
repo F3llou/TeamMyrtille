@@ -7,7 +7,6 @@ import javax.persistence.NoResultException;
 import org.springframework.stereotype.Repository;
 
 import com.wha.springmvc.model.Client;
-import com.wha.springmvc.model.User;
 
 /**
  * 

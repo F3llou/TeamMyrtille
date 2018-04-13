@@ -6,6 +6,7 @@ import com.wha.springmvc.model.Admin;
 import com.wha.springmvc.model.Agent;
 import com.wha.springmvc.model.Auth;
 import com.wha.springmvc.model.Client;
+import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.User;
 
 public interface UserService {
@@ -15,6 +16,8 @@ public interface UserService {
 	User findByName(String name);
 	
 	void saveUser(User user);
+	
+	void saveCompteClient(Client client, Compte compte);
 	
 	void updateUser(User user);
 	
