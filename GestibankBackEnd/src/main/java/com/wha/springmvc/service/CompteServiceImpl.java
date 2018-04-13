@@ -131,10 +131,7 @@ public class CompteServiceImpl implements CompteService{
 			saveCompteSansDecouv(compteSD);
 			return compteSD;
 		}	
-		
-		
-		
-		
+				
 		//------------------------------------------------------------------------------	
 		
 		@Override
@@ -156,6 +153,5 @@ public class CompteServiceImpl implements CompteService{
 					remdao.save(compteRemun);
 				}
 
-	
 
 }

@@ -13,6 +13,7 @@ import com.wha.springmvc.dao.ClientDao;
 import com.wha.springmvc.dao.UserDao;
 import com.wha.springmvc.model.Admin;
 import com.wha.springmvc.model.Agent;
+import com.wha.springmvc.model.Auth;
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.User;
 
@@ -84,25 +85,10 @@ public class UserServiceImpl implements UserService{
 		dao.deleteUserById((int)id);
 	}
 
-	public User verifLogin(User user) {
-		boolean verif1 = false;
-		boolean verif2 = false;
-		User userResult = new User();
-		for (User userTest : dao.findAllUsers()) {
-			if(user.getLogin().equals(userTest.getLogin())) {
-				verif1 = true;
-				userResult = userTest;
-			}
-			if(user.getMdp().equals(userTest.getMdp())) {
-				verif2 = true;
-			}
-		}
-		
-		if(verif1==true && verif2==true) {
-			return userResult;
-		}else {
-			return null;
-		}
+	
+	
+	public User verifLogin(Auth auth) {
+		return dao.checkLogin(auth.getUsername(), auth.getPwd());
 	}
 	
 	public boolean isUserExist(User user) {
