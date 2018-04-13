@@ -8,7 +8,6 @@ import javax.persistence.NoResultException;
 import org.springframework.stereotype.Repository;
 
 import com.wha.springmvc.model.User;
-
 import com.wha.springmvc.dao.AbstractDao;
 
 /**
@@ -107,5 +106,16 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	@Override
 	public void deleteAllUsers(){
 		//
+	}
+
+	@Override
+	public User checkLogin(String login, String pwd) {
+		// TODO Auto-generated method stub
+		User user = (User) getEntityManager().createQuery("SELECT u FROM User as u WHERE u.login = :pseudo and u.mdp = :pwd")
+				.setParameter("pseudo",  login)
+				.setParameter("pwd", pwd)
+				.getSingleResult();
+		return user;
+		
 	}
 }

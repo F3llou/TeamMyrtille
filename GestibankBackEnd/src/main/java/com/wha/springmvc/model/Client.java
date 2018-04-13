@@ -3,6 +3,7 @@ package com.wha.springmvc.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,7 +25,7 @@ public class Client extends User{
 	private String situationMaritale;
 	
 	@JsonIgnore
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<Compte> listComptes;
 	
 	public Client() {

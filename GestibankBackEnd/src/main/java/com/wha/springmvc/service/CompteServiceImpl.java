@@ -11,10 +11,14 @@ import com.wha.springmvc.dao.CompteAvecDecouvertDao;
 import com.wha.springmvc.dao.CompteDao;
 import com.wha.springmvc.dao.CompteRemunDao;
 import com.wha.springmvc.dao.CompteSansDecouvertDao;
+import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.CompteAvecDecouv;
 import com.wha.springmvc.model.CompteRemun;
 import com.wha.springmvc.model.CompteSansDecouv;
+import com.wha.springmvc.model.Depot;
+import com.wha.springmvc.model.Retrait;
+import com.wha.springmvc.model.Virement;
 
 
 @Service("compteService")
@@ -24,6 +28,9 @@ public class CompteServiceImpl implements CompteService{
     @Autowired
     private OperationService operationService;
 	
+    @Autowired
+    private UserService userService;
+    
 	@Autowired
 	private CompteDao compteDao;
 
@@ -56,7 +63,12 @@ public class CompteServiceImpl implements CompteService{
 		compteDao.deleteCompteById(id);
 	}
 
-	
+	public void createCompteClient(int id, Compte compte){
+        Client client = userService.findClientById(id);
+        
+        saveCompte(compte);
+        userService.saveCompteClient(client, compte);
+	}
 	
 	public void deleteAllComptes(){
 		
@@ -66,7 +78,6 @@ public class CompteServiceImpl implements CompteService{
 	public void saveCompte(Compte compte) {
 		// TODO Auto-generated method stub
 		compteDao.save(compte);
-		
 	}
 
 	@Override
@@ -109,13 +120,21 @@ public class CompteServiceImpl implements CompteService{
 		//--------------------------------------retrait Compte Sans Decouvert----------------------------------------	
 		@Override
 		public CompteSansDecouv retraitCompteSansDecouv(double montant, int id) {
+			//recup du compte 
 			CompteSansDecouv compteSD = findCompteSansDecouvById(id);
-			System.out.println("Retrait CompteSansDecouv " + compteSD.getId()+compteSD.getSolde()+compteSD.getDateDeb());
-			double resultat = operationService.retraitEffect(montant, compteSD);
-		 
-			if (resultat >=0) {
+			// recup Obj Retrait 
+			Retrait retrait = operationService.retraitEffect(montant);
+			
+			//set objet retrait dans la liste des operation 
+			compteSD.getListOperations().add(retrait);
+			
+			//set du compte
+			double resultat = compteSD.getSolde()+retrait.getMontant();
+			
+			if(resultat >=0){
 				compteSD.setSolde(resultat);
-				saveCompteSansDecouv(compteSD);
+				//save compte 
+				sdedao.save(compteSD);
 			}
 			return compteSD;
 		}	
@@ -125,18 +144,51 @@ public class CompteServiceImpl implements CompteService{
 		public CompteSansDecouv depotCompteSansDecouv(double montant, int id) {
 			CompteSansDecouv compteSD = findCompteSansDecouvById(id);
 			System.out.println("Depot CompteSansDecouv " + compteSD.getId()+compteSD.getSolde()+compteSD.getDateDeb());
-			double resultat = operationService.depotEffect(montant, compteSD);
+			Depot depot = operationService.depotEffect(montant);
+			double resultat = compteSD.getSolde()+depot.getMontant();
+			compteSD.getListOperations().add(depot);
 		 
 			compteSD.setSolde(resultat);
 			saveCompteSansDecouv(compteSD);
+			
 			return compteSD;
 		}	
-		
-		
-		
-		
-		//------------------------------------------------------------------------------	
-		
+
+		//--------------------------------------virement Compte Sans Decouvert----------------------------------------	
+		@Override
+		public CompteSansDecouv virementCompteSansDecouv(double montant, int id, int idrecev) {
+			//recup du compte 
+			CompteSansDecouv compteSDDepart = findCompteSansDecouvById(id);
+			Compte compteArrive = findCompteSansDecouvById(idrecev);
+			// recup Obj Retrait et Depot et deux types Virements
+			Retrait retrait = operationService.retraitEffect(montant);
+			Depot depot = operationService.depotEffect(montant);
+			Virement virement1 = new Virement();
+			virement1 = operationService.virementInit(virement1, retrait, compteArrive.getId());
+			Virement virement2 = new Virement(); 
+			virement2 = operationService.virementInit(virement2, depot, compteArrive.getId());
+			
+			//set objet retrait dans la liste des operation 
+			compteSDDepart.getListOperations().add(virement1);
+			compteArrive.getListOperations().add(virement2);
+			
+			//set du compte
+			double resultat1 = compteSDDepart.getSolde()+virement1.getMontant();
+			double resultat2 = compteArrive.getSolde()+virement2.getMontant();
+			
+			if(resultat1 >=0){
+				compteSDDepart.setSolde(resultat1);
+				compteArrive.setSolde(resultat2);
+				//save compte 
+				sdedao.save(compteSDDepart);
+				compteDao.save(compteArrive);
+			}
+
+			return compteSDDepart;
+			
+		}	
+				
+				//------------------------------------------------------------------------------	
 		@Override
 		public void saveCompteSansDecouv(CompteSansDecouv compteSansDecouv) {
 			
@@ -155,7 +207,4 @@ public class CompteServiceImpl implements CompteService{
 					
 					remdao.save(compteRemun);
 				}
-
-	
-
 }

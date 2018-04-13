@@ -21,8 +21,9 @@ public interface OperationService {
 	
 	//Les methodes de traitement des retrait
 	Retrait  findRetraitById(int id);
-	double retraitEffect (double montant, Compte compte);
-	double depotEffect (double montant, Compte compte);
+	Retrait retraitEffect (double montant);
+	Depot depotEffect (double montant);
+	Virement virementInit(Virement virement, Operation operation, int idrecev);
 	void saveOperation(Retrait retrait);
 	
 	//les methodes de traitement des depot

@@ -30,7 +30,7 @@ public class VirementDaoImpl extends AbstractDao<Integer, Virement> implements V
 	}
 
 	@Override
-	public Virement findByRib(String rib) {
+	public Virement findByRib(int rib) {
 		// TODO Auto-generated method stub
 		return null;
 	}

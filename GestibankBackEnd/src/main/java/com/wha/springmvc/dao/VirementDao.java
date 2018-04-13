@@ -9,7 +9,7 @@ public interface VirementDao {
 
 	
 	Virement findById(int id);
-	Virement findByRib(String rib);
+	Virement findByRib(int rib);
 	void save(Virement virement);	
 		
 	List<Virement> findAllOperations();	

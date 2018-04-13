@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.wha.springmvc.model.Admin;
 import com.wha.springmvc.model.Agent;
+import com.wha.springmvc.model.Auth;
 import com.wha.springmvc.model.Client;
+import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.User;
 
 public interface UserService {
@@ -15,9 +17,16 @@ public interface UserService {
 	
 	void saveUser(User user);
 	
+	void saveCompteClient(Client client, Compte compte);
+	
 	void updateUser(User user);
 	
-	User verifLogin(User user);
+	/**
+	 * Le service de vérification d'authentification
+	 * @param auth : c'est le DTO qui sera envoyé par le Angular
+	 * @return : le user connecté
+	 */
+	User verifLogin(Auth auth);
 	
 	void deleteUserById(long id);
 

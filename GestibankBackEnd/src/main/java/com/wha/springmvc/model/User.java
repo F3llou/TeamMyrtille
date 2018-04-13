@@ -3,6 +3,7 @@ package com.wha.springmvc.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -43,7 +44,7 @@ public class User {
 	private Date dateDeb;
 	
 	@JsonIgnore
-	@OneToMany(fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<User> listUsers;
 	
 	@JsonIgnore
@@ -157,10 +158,12 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [getId()=" + getId() + ", getLogin()=" + getLogin() + ", getMdp()=" + getMdp() + ", getPrenom()="
-				+ getPrenom() + ", getUsername()=" + getNom() + ", getAddress()=" + getAddress() + ", getEmail()="
-				+ getEmail() + ", getNumTel()=" + getNumTel() + ", getListUsers()=" + getListUsers()
-				+ ", getListDemandes()=" + getListDemandes() + ", getDateDeb()=" + getDateDeb() + "]";
+		return "User [getId()=" + getId() + ", getLogin()=" + getLogin()
+				+ ", getMdp()=" + getMdp() + ", getPrenom()=" + getPrenom()
+				+ ", getNom()=" + getNom() + ", getAddress()=" + getAddress()
+				+ ", getEmail()=" + getEmail() + ", getNumTel()=" + getNumTel()
+				+ ", getListUsers()=" + getListUsers() + ", getListDemandes()="
+				+ getListDemandes() + ", getDateDeb()=" + getDateDeb() + "]";
 	}
 
 	@Override
@@ -171,13 +174,15 @@ public class User {
 		result = prime * result + ((dateDeb == null) ? 0 : dateDeb.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((listDemandes == null) ? 0 : listDemandes.hashCode());
-		result = prime * result + ((listUsers == null) ? 0 : listUsers.hashCode());
+		result = prime * result
+				+ ((listDemandes == null) ? 0 : listDemandes.hashCode());
+		result = prime * result
+				+ ((listUsers == null) ? 0 : listUsers.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((mdp == null) ? 0 : mdp.hashCode());
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		result = prime * result + ((numTel == null) ? 0 : numTel.hashCode());
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		return result;
 	}
 
@@ -227,6 +232,11 @@ public class User {
 				return false;
 		} else if (!mdp.equals(other.mdp))
 			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
 		if (numTel == null) {
 			if (other.numTel != null)
 				return false;
@@ -237,12 +247,7 @@ public class User {
 				return false;
 		} else if (!prenom.equals(other.prenom))
 			return false;
-		if (nom == null) {
-			if (other.nom != null)
-				return false;
-		} else if (!nom.equals(other.nom))
-			return false;
 		return true;
 	}
-	
+
 }

@@ -56,4 +56,12 @@ public interface UserDao {
 	 * (pas de méthode pour le moment)
 	 */
 	void deleteAllUsers();
+	
+	/**
+	 * Verif login
+	 * @param  :login
+	 * @param  :pwd
+	 * @return :le user connecté
+	 */
+	User checkLogin(String username, String pwd);
 }
